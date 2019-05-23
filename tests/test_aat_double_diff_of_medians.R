@@ -37,7 +37,7 @@ aat_fn_score <- function (sets) {
 aat_scores <- sh_apply(ds_aat, "UserID", aat_fn_sets, aat_fn_score)
 
 # Check with manually calculated score
-if (abs(subset(aat_scores, aat_scores$UserID == 190)$score - (-101.85)) > .0000001) {
+if (abs(subset(aat_scores, UserID == 190)$score - (-101.85)) > .0000001) {
   stop("score of UserID 190 did not match with score calculated manually")
 }
 

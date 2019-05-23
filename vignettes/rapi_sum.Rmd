@@ -21,7 +21,7 @@ This vignette describes a sum-score of answers on questions from the 23-item Rut
 ([White & Labouvie, 1989](https://research.alcoholstudies.rutgers.edu/rapi));
 
 # Dataset
-Load the included VPT dataset and inspect its documentation.
+Load the included RAPI dataset and inspect its documentation.
 ```
 data("ds_rapi", package = "splithalfr")
 ?ds_rapi
