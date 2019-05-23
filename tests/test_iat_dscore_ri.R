@@ -58,14 +58,13 @@ if (abs(subset(iat_scores, UserID == 1)$score - 0.407603898) > .000001) {
   stop("score of UserID 1 did not match with score calculated manually")
 }
 
-# Calculate split half scores 100 times
-# Uncomment the part below to calculate split half scores 100 times
-# ds_splits <- sh_apply(
-#   ds_trials,
-#   "UserID",
-#   d_score_ri.sets,
-#   d_score_ri.score,
-#   split_count = 100
-# )
-# # Calculate mean of spearman-brown reliabilities of each split
-# reliability <- mean_sb_by_split(ds_splits)
+# Calculate two split-half reliabilities
+iat_splits <- sh_apply(
+  ds_iat,
+  "UserID",
+  iat_fn_sets,
+  iat_fn_score,
+  split_count = 2
+)
+# Calculate mean of spearman-brown reliabilities of each split
+reliability <- mean_sb_by_split(iat_splits)

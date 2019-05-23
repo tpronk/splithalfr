@@ -1,8 +1,8 @@
 ---
-title: "VPT Difference of Means"
+title: "RAPI Sum-score"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{vpt_diff_of_means}
+  %\VignetteIndexEntry{rapi_sum}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -17,6 +17,7 @@
 #'
 #' @import dplyr
 #' @importFrom stats cor sd
+#' @importFrom rlang .data
 #' @docType package
 #' @name splithalfr
 NULL
@@ -165,7 +166,7 @@ mean_rel_by_split <- function (ds, fn_rel) {
   ds_rs <- ds %>%
     group_by(split) %>%
     summarize(
-      r = fn_rel(score_1, score_2)
+      r = fn_rel(.data$score_1, .data$score_2)
     )
   return (mean(ds_rs$r))
 }

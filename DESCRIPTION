@@ -15,8 +15,7 @@ Suggests:
     knitr,
     rmarkdown
 Imports:
-	dplyr, 
-	magrittr,
+	dplyr,
 	rlang
 RoxygenNote: 6.1.1.9000
 VignetteBuilder: knitr

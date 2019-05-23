@@ -41,15 +41,14 @@ if (abs(subset(vpt_scores, UserID == 23)$score - 7.098501382) > 0.00001) {
   stop("score of UserID 23 did not match with score calculated manually")
 }
 
-# Uncomment the part below to calculate split half scores 100 times
-# # Calculate split half scores 10 times
-# vpt_splits <- sh_apply(
-#   ds_vpt,
-#   "UserID",
-#   vpt_fn_sets,
-#   vpt_fn_score,
-#   split_count = 100
-# )
-# # Calculate mean of spearman-brown reliabilities of each split
-# reliability <- mean_sb_by_split(vpt_splits)
-# reliability
+# Calculate two split-half reliabilities
+vpt_splits <- sh_apply(
+  ds_vpt,
+  "UserID",
+  vpt_fn_sets,
+  vpt_fn_score,
+  split_count = 2
+)
+# Calculate mean of spearman-brown reliabilities of each split
+reliability <- mean_sb_by_split(vpt_splits)
+
