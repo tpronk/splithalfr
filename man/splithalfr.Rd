@@ -10,12 +10,13 @@ Calculates scores and bootstrapped split-half reliabilities for reaction time (R
 The splithalfr can be extended by custom scoring methods for user-provided datasets.
 }
 \details{
-The splithalfr vignettes demonstrate how to write a custom scoring method based on a set of common RT task scoring methods:
+The splithalfr vignettes demonstrate how to write a custom scoring method based on a set of common questionnaire and RT task scoring methods,
 using included example datasets:
 \itemize{
-  \item \code{vignette("vpt_diff_of_means")} Difference of mean RTs for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data (\href{https://www.tandfonline.com/doi/pdf/10.1080/026999399379050}{Mogg & Bradley, 1999})
-  \item \code{vignette("aat_double_diff_of_medians")} Double difference of medians for correct responses on Approach Avoidance Task data (\href{https://psycnet.apa.org/record/1986-17383-001}{MacLeod, Andrews, & Tata, 1986})
-  \item \code{vignette("iat_dscore_ri")} Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial \href{https://psycnet.apa.org/record/2003-05897-003}{Greenwald, Nosek, & Banaji, 2003})
+  \item \code{vignette("rapi_sum")} Sum-score for data of the 23-item version of the Rutgers Alcohol Problem Index (\href{https://research.alcoholstudies.rutgers.edu/rapi}{White & Labouvie, 1989})
+  \item \code{vignette("vpt_diff_of_means")} Difference of mean RTs for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data (\href{https://doi.org/10.1080/026999399379050}{Mogg & Bradley, 1999})
+  \item \code{vignette("aat_double_diff_of_medians")} Double difference of medians for correct responses on Approach Avoidance Task data (\href{http://doi.org/10.1016/j.brat.2007.08.010}{Heuer, Rinck, & Becker, 2007})
+  \item \code{vignette("iat_dscore_ri")} Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial (\href{http://dx.doi.org/10.1037/0022-3514.85.2.197}{Greenwald, Nosek, & Banaji, 2003})
 }
 The code included in each vignette also serves as a test of correct functioning of the splithalfr, by comparing the splithalfr
 score for a single participant with the same score calculated via Excel. The materials for each test can be found on

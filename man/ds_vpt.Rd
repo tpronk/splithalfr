@@ -29,7 +29,7 @@ This dataset was graciously provided by \href{https://www.researchgate.net/profi
   \item keep. If "yes" the probe was superimposed on the stimuli. If "no" the probe replaced the stimuli.
   \item pdir. Probe direction. Values: "up" or "down"
   \item stim. Stimulus
-  \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 5000 ms), 4 = invalid
+  \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 5000 ms), 4 = invalid key
   \item rt. Response time in milliseconds
   \item block. Counts blocks, starting at zero
   \item trial. Counts trials in blocks, starting at zero

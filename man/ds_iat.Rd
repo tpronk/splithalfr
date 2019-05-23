@@ -16,7 +16,7 @@ upon an incorrect response the current trial is repeated. The response to each t
 This particular dataset is from a Drinker Identity IAT
 (\href{https://psycnet.apa.org/record/2012-07237-001}{Lindgren et al., 2013})
 that was used in a cross-cultural study. Drinker was target 1, non-drinker was target 2, me was attribute 1, and not-me was attribute 2.
-The dataset was graciously provided by \href{https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en}{Helle Larsen}.
+This dataset was graciously provided by \href{https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en}{Helle Larsen}.
 }
 \details{
 Overview of variables:
@@ -27,7 +27,7 @@ Overview of variables:
   \item a1_left. If TRUE, the first combination block had attribute 1 on the left (and attribute 2 on the right)
   \item cat. Category that stimulus belonged to
   \item stim. Stimulus
-  \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid
+  \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid key
   \item rt. Response time in milliseconds. Note that some response times may exceed the timeout window due to clock errors on the computer that the IAT was administered
   \item block. Counts blocks, starting at zero
   \item trial. Counts trials in blocks, starting at zero

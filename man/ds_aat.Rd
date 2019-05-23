@@ -14,25 +14,22 @@ approach/avoid left/right rotated stimuli. This particular AAT presented stimuli
 category, which were math-related pictures, and from a "control" category, which were pictures unrelated
 to math. It registered approach responses by participants pressing (and holding) the arrow down key,
 while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
-out, until it disappeared from view. The first response to a stimulus is logged, as well as the final
-response, as defined by  the stimulus completely zooming in or out. Upon a correct final response
-the next trial starts and upon an incorrect final response the current trial is repeated.
-The response to each trial is logged.
+out, until it disappeared from the screen. The first response to a stimulus is logged, as well as the final
+response, as defined by the stimulus completely zooming in or out. Upon a correct final response
+the next trial starts and upon an incorrect final response the current trial is repeated. The first and final
+response to each trial is logged.
+This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
 }
 \details{
-, the next trial started. Upon an incorrect
-response, the trial was repeated.
-The dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
-
 \itemize{
   \item UserID. Identifies participations
   \item approach_left. If TRUE, participants were instructed to approach left rotated stimuli. If FALSE, participants were instructed to approach right rotated stimuli.
   \item trial_type. Values: "approach" or "avoid"
   \item cat. Stimulus category: practice, test, or control
   \item stim. Stimulus
-  \item response. Initial response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid
+  \item response. Initial response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid key
   \item rt. Response time in milliseconds
-  \item sust. Was approach or avoid key held until the stimulus was completely zoomed in or out?
+  \item sust. Was approach or avoid response sustained until the stimulus was completely zoomed in or out?
   \item final_response. Final response; the response that ended the current trial. Possible values are the same as for response
   \item block. Counts blocks, starting at zero
   \item trial. Counts trials in blocks, starting at zero

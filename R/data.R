@@ -98,18 +98,20 @@
 #' Example 23-item Rutgers Alcohol Problem Inventory (RAPI) data
 #'
 #' The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
-#' problems the within the last year. Each item is answered on a four-point scale with the following answer options:
-#' \itemize{
-#'   \item 0 = None
-#'   \item 1 = 1-2 times
-#'   \item 2 = 3-5
-#'   \item 3 = More than 5 times
-#' }
+#' problems within the last year.
 #'
 #' The dataset contains the following columns:
 #' \itemize{
 #'   \item twnr. Identifies participations
 #'   \item V1 to V23. Answers on each of the 23 RAPI items
+#' }
+#'
+#' Each item is answered on a four-point scale with the following answer options:
+#' \itemize{
+#'   \item 0 = None
+#'   \item 1 = 1-2 times
+#'   \item 2 = 3-5
+#'   \item 3 = More than 5 times
 #' }
 "ds_rapi"
 

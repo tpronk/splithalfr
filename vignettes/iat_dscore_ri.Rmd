@@ -44,7 +44,7 @@ First, the RT of timeout responses is set to the IAT timeout of 4000 ms.
 ```
 ds_iat[ds_iat$response == 3, ]$rt <- 4000
 ```
-The improved d-score algorithm specifies that participations whose RTs for over 10% of reponses are below < 300 ms should be dropped. The R-script below identifies such participations. Note that none of the participations met this criteria, so all can be kept for successive analyses.
+The improved d-score algorithm specifies that participations whose RTs for over 10% of reponses are below < 300 ms should be dropped. The R-script below identifies such participations. Note that none of the participations meet this criterion, so all can be kept for successive analyses.
 ```
 ds_summary <- ds_iat %>%
   dplyr::group_by(UserID) %>%

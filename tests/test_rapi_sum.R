@@ -25,14 +25,14 @@ if (abs(subset(rapi_scores, twnr == 396)$score - 16) > .0000001) {
   stop("score of UserID 396 did not match with score calculated manually")
 }
 
-# Uncomment the part below to calculate split half scores 100 times
-rapi_splits <- sh_apply(
-  ds_rapi,
-  "twnr",
-  rapi_fn_sets,
-  rapi_fn_score,
-  split_count = 100
-)
-
-# Calculate mean of flanagan-rulon reliabilities of each split
-reliability <- mean_fr_by_split(rapi_splits)
+# # Uncomment the part below to calculate split half scores 100 times
+# rapi_splits <- sh_apply(
+#   ds_rapi,
+#   "twnr",
+#   rapi_fn_sets,
+#   rapi_fn_score,
+#   split_count = 100
+# )
+#
+# # Calculate mean of flanagan-rulon reliabilities of each split
+# reliability <- mean_fr_by_split(rapi_splits)
