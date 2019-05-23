@@ -1,0 +1,97 @@
+---
+title: "VPT Difference of Means"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{vpt_diff_of_means}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(splithalfr)
+```
+This vignette describes a sum-score of answers on questions from the 23-item Rutgers Alcohol Problem Inventory (RAPI)
+([White & Labouvie, 1989](https://research.alcoholstudies.rutgers.edu/rapi));
+
+# Dataset
+Load the included VPT dataset and inspect its documentation.
+```
+data("ds_rapi", package = "splithalfr")
+?ds_rapi
+```
+## Relevant Variables
+The columns used in this example are:
+
+* twnr, which identifies participations
+* V1 to V23, which contain answers to each of the 23 RAPI items
+
+# Scoring the RAPI
+Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
+
+## Sets Function
+The sets function receives data from a single participation and returns a list of datasets. In this case, we will generate a list with a single element, which contains data from each of the 23 items. As this data should be split by columns, we deliver the data as a vector.
+```
+rapi_fn_sets <- function (ds) {
+  return (list(
+    items = unlist(ds[paste("V", 1 : 23, sep = "")])
+  ))
+}
+```
+
+## Score Function
+The score function receives the list from a single participation and returns the sum-score.
+```
+rapi_fn_score <- function (sets) {
+  return (sum(sets$items))
+}
+```
+
+## Calculating Scores
+To calculate scores for each participation, call sh_apply with four arguments: 
+
+1. the dataset
+2. column that identifies participations in the dataset
+3. sets function
+4. score function
+
+The sh_apply function will return a data frame with one row per participation, and as columns: one that identifies participations ("twnr" in this example) and a column "score", that contains the output of the score function.
+```
+rapi_scores <- sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score)
+```
+
+## Checking Scores
+It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. 
+
+# Calculating Split-half Reliability
+
+## Generating Split Scores
+To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+
+* twnr, which identifies participations
+* split, which counts splits
+* score_1, and score_2, which are the scores calculated for each of the split datasets
+
+```
+rapi_splits <- sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score, split_count = 100)
+```
+
+## Calculating Reliability Averaged over Splits
+Next, the output of sh_apply can be analyzed in order to assess reliability. By default, functions are provided that automatically calculate mean Spearman-Brown reliability (mean_sb_by_split) or Flanagan-Rulon reliability (mean_fr_by_split) on splithalfr output. If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability.
+```
+# Spearman-Brown
+mean_sb_by_split(rapi_splits)
+# Flanagan-Rulon
+mean_fr_by_split(rapi_splits)
+```
+
+
+
+
+

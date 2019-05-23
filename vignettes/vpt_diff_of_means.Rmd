@@ -1,0 +1,121 @@
+---
+title: "VPT Difference of Means"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{vpt_diff_of_means}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(splithalfr)
+```
+This vignette describes a scoring method similar to [Mogg and Bradley (1999)](https://doi.org/10.1080/026999399379050);
+difference of mean reaction times (RTs) between conditions with probe-at-test and probe-at-control, for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data.
+
+
+# Dataset
+Load the included VPT dataset and inspect its documentation.
+```
+data("ds_vpt", package = "splithalfr")
+?ds_vpt
+```
+## Relevant Variables
+The columns used in this example are:
+
+* UserID, which identifies participations
+* block_type, in order to select assessment blocks only
+* patt, in order to compare trials in which the probe is at the test or at the control stimulus
+* response, in order to select correct responses only
+* rt, in order to drop RTs outside of the range [200, 520] and calculate means per level of patt
+
+## Preprocessing
+Only select trials from assessment blocks
+```
+ds_vpt <- subset(ds_vpt, block_type == "assess")
+```
+
+# Scoring the VPT
+Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
+
+## Sets Function
+The sets function receives data from a single participation and returns a list of datasets for each condition. In this case, we will generate two lists: one with data from trials with probe-at-test (patt == "yes") and one with data from trials with probe-at-control (patt == "no"). 
+```
+vpt_fn_sets <- function (ds) {
+  return (list(
+    # Probe-at-test
+    patt_yes = subset(ds, patt == "yes"),
+    # Probe-at-control
+    patt_no  = subset(ds, patt == "no")
+  ))
+}
+```
+
+## Score Function
+The score function receives these two lists from a single participation and for each: 
+
+1. selects only correct responses
+2. drops RTs outside of the range [200, 520]
+3. calculates the mean of the remaining RTs. 
+
+Finally, it returns the difference between the two mean RTs.
+```
+vpt_fn_score <- function (sets) {
+  rt_yes <- subset(sets$patt_yes, response == 1)$rt
+  rt_yes <- rt_yes[rt_yes >= 200 & rt_yes <= 520]
+  rt_no <- subset(sets$patt_no, response == 1)$rt
+  rt_no <- rt_no[rt_no >= 200 & rt_no <= 520]
+  return (mean(rt_no) - mean(rt_yes))
+}
+```
+
+## Calculating Scores
+To calculate scores for each participation, call sh_apply with four arguments: 
+
+1. the dataset
+2. column that identifies participations in the dataset
+3. sets function
+4. score function
+
+The sh_apply function will return a data frame with one row per participation, and as columns: one that identifies participations ("UserID" in this example) and a column "score", that contains the output of the score function.
+```
+vpt_scores <- sh_apply(ds_vpt, "UserID", vpt_fn_sets, vpt_fn_score)
+```
+
+## Checking Scores
+It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. Note that in the example dataset, some participations (such as UserID 8) did not have any correct responses in the patt == yes condition with RTs within the range [200, 520]. For these participants, a score could not be calculated.
+
+# Calculating Split-half Reliability
+
+## Generating Split Scores
+To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+
+* UserID, which identifies participations
+* split, which counts splits
+* score_1, and score_2, which are the scores calculated for each of the split datasets
+
+Since for some participations a score could not be calculated, the split scores are missing for these participations as well. 
+```
+vpt_splits <- sh_apply(ds_vpt, "UserID", vpt_fn_sets, vpt_fn_score, 100)
+```
+
+## Calculating Reliability Averaged over Splits
+Next, the output of sh_apply can be analyzed in order to assess reliability. By default, functions are provided that automatically calculate mean Spearman-Brown reliability (mean_sb_by_split) or Flanagan-Rulon reliability (mean_fr_by_split) on splithalfr output. If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability.
+```
+# Spearman-Brown
+mean_sb_by_split(vpt_splits)
+# Flanagan-Rulon
+mean_fr_by_split(vpt_splits)
+```
+
+
+
+
+
