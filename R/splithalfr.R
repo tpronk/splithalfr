@@ -15,9 +15,9 @@
 #' score for a single participant with the same score calculated via Excel. The materials for each test can be found on
 #' \href{https://github.com/tpronk/splithalfr/tree/master/tests}{the splithalfr GitHub repository}
 #'
-#' @import dplyr
+#' @importFrom dplyr %>% group_by group_modify summarize
 #' @importFrom stats cor sd
-#' @importFrom rlang .data
+#' @importFrom rlang .data parse_quo caller_env
 #' @docType package
 #' @name splithalfr
 NULL
@@ -87,12 +87,13 @@ sh_apply <- function (
   fn_score,
   split_count = 0
 ) {
+  participation_var = parse_quo(participation_id, env = caller_env())
   if (split_count == 0) {
     ds_result <- ds %>%
       # For each participation...
-      group_by_at(participation_id) %>%
+      group_by(!!participation_var) %>%
       # Apply this function to the data
-      group_map(function (ds_group, grouping_vars) {
+      group_modify(function (ds_group, grouping_vars) {
         sets <- fn_sets(ds_group)
         score <- fn_score(sets)
         return (data.frame(
@@ -106,9 +107,9 @@ sh_apply <- function (
       print(paste("Split", split_i, "of", split_count))
       ds_scores <- ds %>%
         # For each participation...
-        group_by_at(participation_id) %>%
+        group_by(!!participation_var) %>%
         # Apply this function to the data
-        group_map(function (ds_group, grouping_vars) {
+        group_modify(function (ds_group, grouping_vars) {
           return(split_score(
             # Step 1, sets we use in calculation
             sets = fn_sets(ds_group),

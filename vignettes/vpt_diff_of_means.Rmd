@@ -20,6 +20,7 @@ library(splithalfr)
 This vignette describes a scoring method similar to [Mogg and Bradley (1999)](https://doi.org/10.1080/026999399379050);
 difference of mean reaction times (RTs) between conditions with probe-at-test and probe-at-control, for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data.
 
+<br />
 
 # Dataset
 Load the included VPT dataset and inspect its documentation.
@@ -41,6 +42,8 @@ Only select trials from assessment blocks
 ```
 ds_vpt <- subset(ds_vpt, block_type == "assess")
 ```
+
+<br />
 
 # Scoring the VPT
 Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
@@ -91,6 +94,8 @@ vpt_scores <- sh_apply(ds_vpt, "UserID", vpt_fn_sets, vpt_fn_score)
 
 ## Checking Scores
 It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. Note that in the example dataset, some participations (such as UserID 8) did not have any correct responses in the patt == yes condition with RTs within the range [200, 520]. For these participants, a score could not be calculated.
+
+<br />
 
 # Calculating Split-half Reliability
 

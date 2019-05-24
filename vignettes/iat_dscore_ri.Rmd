@@ -22,6 +22,8 @@ library(dplyr)
 ```
 This vignette describes a scoring method introduced by [Greenwald, Nosek, and Banaji (2003)](http://dx.doi.org/10.1037/0022-3514.85.2.197); the improved d-score for Implicit Association Task (IATs) that require a correct response in order to continue to the next trial. This version of the d-score algorithm adds up all response times of all responses per trial. As this algorithm also specifies which participations to keep and to drop, functions from the [dplyr package](https://dplyr.tidyverse.org/) will be used to produce relevant summary statistics. Note that this vignette is more advanced that the others included in the splithalfr package, so it is not recommended as a first introduction on to how to use the splithalfr.
 
+<br />
+
 # Dataset
 Load the included IAT dataset and inspect its documentation.
 ```
@@ -65,6 +67,8 @@ ds_iat <- ds_iat %>%
       rt = sum(rt)
     )
 ```
+
+<br />
 
 # Scoring the AAT
 Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
@@ -131,6 +135,8 @@ iat_scores <- sh_apply(ds_iat, "UserID", iat_fn_sets, iat_fn_score)
 
 ## Checking Scores
 It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. 
+
+<br />
 
 # Calculating Split-half Reliability
 

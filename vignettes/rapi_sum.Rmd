@@ -1,5 +1,5 @@
 ---
-title: "RAPI Sum-score"
+title: "RAPI Sum Score"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{rapi_sum}
@@ -17,8 +17,10 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(splithalfr)
 ```
-This vignette describes a sum-score of answers on questions from the 23-item Rutgers Alcohol Problem Inventory (RAPI)
+This vignette describes a sum score of answers on questions from the 23-item Rutgers Alcohol Problem Inventory (RAPI)
 ([White & Labouvie, 1989](https://research.alcoholstudies.rutgers.edu/rapi));
+
+<br />
 
 # Dataset
 Load the included RAPI dataset and inspect its documentation.
@@ -31,6 +33,8 @@ The columns used in this example are:
 
 * twnr, which identifies participations
 * V1 to V23, which contain answers to each of the 23 RAPI items
+
+<br />
 
 # Scoring the RAPI
 Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
@@ -46,7 +50,7 @@ rapi_fn_sets <- function (ds) {
 ```
 
 ## Score Function
-The score function receives the list from a single participation and returns the sum-score.
+The score function receives the list from a single participation and returns the sum score.
 ```
 rapi_fn_score <- function (sets) {
   return (sum(sets$items))
@@ -68,6 +72,8 @@ rapi_scores <- sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score)
 
 ## Checking Scores
 It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. 
+
+<br />
 
 # Calculating Split-half Reliability
 

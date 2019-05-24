@@ -19,6 +19,8 @@ library(splithalfr)
 ```
 This vignette describes a scoring method similar to [Heuer, Rinck, and Becker (2007)](http://doi.org/10.1016/j.brat.2007.08.010); double difference of medians for correct responses on Approach Avoidance Task data. It is a subtraction comparing approach bias towards test stimuli relative to approach bias towards control stimuli (avoid_test - approach_test) - (avoid_control - approach_control).
 
+<br />
+
 # Dataset
 Load the included AAT dataset and inspect its documentation.
 ```
@@ -44,6 +46,8 @@ Only select trials from assessment blocks, using the first response of the first
 ds_aat <- subset(ds_aat, block_type %in% c("assess1", "assess2"))
 ds_aat <- subset(ds_aat, attempt == 0)
 ```
+
+<br />
 
 # Scoring the AAT
 Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
@@ -93,6 +97,8 @@ aat_scores <- sh_apply(ds_aat, "UserID", aat_fn_sets, aat_fn_score)
 
 ## Checking Scores
 It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. 
+
+<br />
 
 # Calculating Split-half Reliability
 

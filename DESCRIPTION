@@ -1,6 +1,6 @@
 Package: splithalfr
 Title: Extensible Bootstrapped Split-half Reliabilities
-Version: 1.0.1
+Version: 1.0.2
 Author: Thomas Pronk
 Authors@R: person("Thomas", "Pronk", email = "pronkthomas@gmail.com",
                   role = c("aut", "cre"))
