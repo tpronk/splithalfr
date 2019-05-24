@@ -79,13 +79,15 @@ split_score <- function (
 #' @param fn_sets (function) receives data from a single participation, should return a list of sets that may be split
 #' @param fn_score (function) receives full or split sets, should return a single number
 #' @param split_count (numeric) Default: 0. If 0, applies fn_score on full set. If > 0, applies fn_score to split sets, split_count times
+#' @param split_count (logical) Default: FALSE. If TRUE, prints at what split we are now
 #' @return (data frame) If split_count == 0, applies fn_score result on full data and returns a data frame with a column for participation_id and a column named "score" for fn_score applied to the full data of a participation. If split_count > 0, applies fn_score on full data and returns data frame with a column for participation_id, a column "split" that counts splits, and "score_1" and "score_2" for fn_score applied to each split.
 sh_apply <- function (
   ds,
   participation_id,
   fn_sets,
   fn_score,
-  split_count = 0
+  split_count = 0,
+  verbose = FALSE
 ) {
   participation_var = parse_quo(participation_id, env = caller_env())
   if (split_count == 0) {
@@ -104,7 +106,9 @@ sh_apply <- function (
   } else {
     ds_result <- NULL
     for (split_i in 1 : split_count) {
-      print(paste("Split", split_i, "of", split_count))
+      if (verbose) {
+        print(paste("Split", split_i, "of", split_count))
+      }
       ds_scores <- ds %>%
         # For each participation...
         group_by(!!participation_var) %>%
