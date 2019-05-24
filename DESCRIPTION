@@ -11,11 +11,12 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: 
-    psych,
-    knitr,
-    rmarkdown
+    psych (>= 1.8.12),
+    knitr (>= 1.20),
+    rmarkdown (>= 1.10),
+    testthat (>= 2.1.0)
 Imports:
-	dplyr,
-	rlang
+	dplyr (>= 0.8.1),
+	rlang (>= 0.3.4)
 RoxygenNote: 6.1.1.9000
 VignetteBuilder: knitr
