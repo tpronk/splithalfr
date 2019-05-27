@@ -46,7 +46,7 @@ First, the RT of timeout responses is set to the IAT timeout of 4000 ms.
 ```
 ds_iat[ds_iat$response == 3, ]$rt <- 4000
 ```
-The improved d-score algorithm specifies that participations whose RTs for over 10% of reponses are below < 300 ms should be dropped. The R-script below identifies such participations. Note that none of the participations meet this criterion, so all can be kept for successive analyses.
+The improved d-score algorithm specifies that participations whose RTs for over 10% of reponses are below 300 ms should be dropped. The R-script below identifies such participations. Note that none of the participations meet this criterion, so all can be kept for successive analyses.
 ```
 ds_summary <- ds_iat %>%
   dplyr::group_by(UserID) %>%
@@ -97,7 +97,7 @@ The score function receives these four lists from a single participation. For bo
 
 1. Mean RT of target 1 with attribute 1 is calculated
 2. Mean RT of target 1 with attribute 2 is calculated
-3. The difference in mean RTs of both block is divided by the inclusive standard deviation (SD)
+3. The difference in mean RTs of both blocks is divided by the inclusive standard deviation (SD)
 
 The d-score is the mean of the block scores for practice and test blocks. 
 
@@ -141,7 +141,7 @@ It is recommended to check your scoring method by calculating the score of a rep
 # Calculating Split-half Reliability
 
 ## Generating Split Scores
-To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+To calculate split-half scores for each participation, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
 
 * UserID, which identifies participations
 * split, which counts splits

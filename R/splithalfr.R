@@ -1,4 +1,4 @@
-#' splithalfr: Extensible Bootstrapped Split-half Reliabilities
+#' splithalfr: Extensible Bootstrapped Split-Half Reliabilities
 #'
 #' Calculates scores and bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires.
 #' The splithalfr can be extended by custom scoring methods for user-provided datasets.
@@ -11,9 +11,13 @@
 #'   \item \code{vignette("aat_double_diff_of_medians")} Double difference of medians for correct responses on Approach Avoidance Task data (\href{http://doi.org/10.1016/j.brat.2007.08.010}{Heuer, Rinck, & Becker, 2007})
 #'   \item \code{vignette("iat_dscore_ri")} Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial (\href{http://dx.doi.org/10.1037/0022-3514.85.2.197}{Greenwald, Nosek, & Banaji, 2003})
 #' }
+#' 
 #' The code included in each vignette also serves as a test of correct functioning of the splithalfr, by comparing the splithalfr
-#' score for a single participant with the same score calculated via Excel. The materials for each test can be found on
+#' score for a single participant with the same score calculated via Excel. The materials for each test can be found in
 #' \href{https://github.com/tpronk/splithalfr/tree/master/tests}{the splithalfr GitHub repository}
+#' 
+#' The splithalfr splitting algorithm has been validated via a set of simulations which is not included in this package. The R script 
+#' for these simulations can be found \href{https://github.com/tpronk/splithalfr_simulation}{here}.
 #'
 #' @importFrom dplyr %>% group_by group_modify summarize
 #' @importFrom stats cor sd
@@ -22,11 +26,11 @@
 #' @name splithalfr
 NULL
 
-#' Splits a list, vector, or data frame, into two random halves of similar size
-#'
-#' @keywords internal
-#' @param set (list, vector, or data frame) object to split
-#' @return (list) List with two elements that contain each of the two splits of set. Lists and vectors are split by elements, while data frames are split by rows
+# Splits a list, vector, or data frame, into two random halves of similar size
+#
+# @keywords internal
+# @param set (list, vector, or data frame) object to split
+# @return (list) List with two elements that contain each of the two splits of set. Lists and vectors are split by elements, while data frames are split by rows
 makesplit <- function (set) {
   if (!is.data.frame(set)) {
     # If list or vector, index elements
@@ -49,12 +53,12 @@ makesplit <- function (set) {
   }
 }
 
-#' Applies an fn_score on split data
-#'
-#' @keywords internal
-#' @param sets (list) list of vectors, data frames, and lists to feed into fn_score. Each element of sets is split in two random halves of similar size
-#' @param fn_score (function) called with split sets as argument, should return a single value
-#' @return (mixed) Data frame with one row and two columns; score_1 and score_2, which contain the result of the fn_score applied to each split
+# Applies an fn_score on split data
+#
+# @keywords internal
+# @param sets (list) list of vectors, data frames, and lists to feed into fn_score. Each element of sets is split in two random halves of similar size
+# @param fn_score (function) called with split sets as argument, should return a single value
+# @return (mixed) Data frame with one row and two columns; score_1 and score_2, which contain the result of the fn_score applied to each split
 split_score <- function (
   sets = NULL,
   fn_score = NULL
@@ -71,7 +75,7 @@ split_score <- function (
   ))
 }
 
-#' Apply a scoring method to each participation using full or split data sets
+#' Apply a scoring method to each participation using full or split data set
 #'
 #' @export
 #' @param ds (data frame) data frame containing data to score
@@ -79,7 +83,7 @@ split_score <- function (
 #' @param fn_sets (function) receives data from a single participation, should return a list of sets that may be split
 #' @param fn_score (function) receives full or split sets, should return a single number
 #' @param split_count (numeric) Default: 0. If 0, applies fn_score on full set. If > 0, applies fn_score to split sets, split_count times
-#' @param split_count (logical) Default: FALSE. If TRUE, prints at what split we are now
+#' @param show_progress (logical) Default: TRUE If TRUE, prints current split number each split
 #' @return (data frame) If split_count == 0, applies fn_score result on full data and returns a data frame with a column for participation_id and a column named "score" for fn_score applied to the full data of a participation. If split_count > 0, applies fn_score on full data and returns data frame with a column for participation_id, a column "split" that counts splits, and "score_1" and "score_2" for fn_score applied to each split.
 sh_apply <- function (
   ds,
@@ -87,7 +91,7 @@ sh_apply <- function (
   fn_sets,
   fn_score,
   split_count = 0,
-  verbose = FALSE
+  show_progress = TRUE
 ) {
   participation_var = parse_quo(participation_id, env = caller_env())
   if (split_count == 0) {
@@ -106,7 +110,7 @@ sh_apply <- function (
   } else {
     ds_result <- NULL
     for (split_i in 1 : split_count) {
-      if (verbose) {
+      if (show_progress) {
         print(paste("Split", split_i, "of", split_count))
       }
       ds_scores <- ds %>%
@@ -134,32 +138,32 @@ sh_apply <- function (
 # *************
 # *** splithalver Reliability Functions
 
-#' Flanagon-Rulon reliability
-#'
-#' @keywords internal
-#' @param x (vector) a numeric vector
-#' @param y (vector) a numeric vector with compatible dimensions to x
-#' @return (numeric) Flanagon-Rulon reliability
+# Flanagon-Rulon reliability
+#
+# @keywords internal
+# @param x (vector) a numeric vector
+# @param y (vector) a numeric vector with compatible dimensions to x
+# @return (numeric) Flanagon-Rulon reliability
 flanagan_rulon <- function (x, y) {
   return ((4 * cor(x, y) * sd(x) * sd(y)) / (sd(x) ^ 2 + sd(y) ^ 2 + 2 * cor(x, y) * sd(x) * sd(y)))
 }
 
-#' Spearman-Brown reliability
-#'
-#' @keywords internal
-#' @param x (vector) a numeric vector
-#' @param y (vector) a numeric vector with compatible dimensions to x
-#' @return (numeric) Spearman-Brown reliability
+# Spearman-Brown reliability
+#
+# @keywords internal
+# @param x (vector) a numeric vector
+# @param y (vector) a numeric vector with compatible dimensions to x
+# @return (numeric) Spearman-Brown reliability
 spearman_brown <- function (x, y) {
   return (2 * cor(x,y) / (1 + cor(x,y)))
 }
 
-#' Reliability coefficient averaged over each split. Can be applied to output of sh_apply
-#'
-#' @keywords internal
-#' @param ds (data frame) a data frame with columns "split", "score_1", and "score_2"
-#' @param fn_rel (function) a function that serves as reliability measure
-#' @return (numeric) mean of reliabilities
+# Reliability coefficient averaged over each split. Can be applied to output of sh_apply
+#
+# @keywords internal
+# @param ds (data frame) a data frame with columns "split", "score_1", and "score_2"
+# @param fn_rel (function) a function that serves as reliability measure
+# @return (numeric) mean of reliabilities
 mean_rel_by_split <- function (ds, fn_rel) {
   # Check on missing values
   if (any(is.na(ds[c("score_1", "score_2")]))) {

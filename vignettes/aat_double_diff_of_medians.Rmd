@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(splithalfr)
 ```
-This vignette describes a scoring method similar to [Heuer, Rinck, and Becker (2007)](http://doi.org/10.1016/j.brat.2007.08.010); double difference of medians for correct responses on Approach Avoidance Task data. It is a subtraction comparing approach bias towards test stimuli relative to approach bias towards control stimuli (avoid_test - approach_test) - (avoid_control - approach_control).
+This vignette describes a scoring method similar to [Heuer, Rinck, and Becker (2007)](http://doi.org/10.1016/j.brat.2007.08.010); double difference of median reaction times (RTs) for correct responses on Approach Avoidance Task data. It is a subtraction comparing approach bias towards test stimuli relative to approach bias towards control stimuli (avoid_test - approach_test) - (avoid_control - approach_control).
 
 <br />
 
@@ -41,7 +41,7 @@ The columns used in this example are:
 
 
 ## Preprocessing
-Only select trials from assessment blocks, using the first response of the first attempt at each trial
+Only select trials from assessment blocks, using the first response of the first attempt of each trial.
 ```
 ds_aat <- subset(ds_aat, block_type %in% c("assess1", "assess2"))
 ds_aat <- subset(ds_aat, attempt == 0)
@@ -103,7 +103,7 @@ It is recommended to check your scoring method by calculating the score of a rep
 # Calculating Split-half Reliability
 
 ## Generating Split Scores
-To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+To calculate split-half scores for each participation, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
 
 * UserID, which identifies participations
 * split, which counts splits

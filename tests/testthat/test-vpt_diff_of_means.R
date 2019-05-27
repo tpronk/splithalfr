@@ -1,6 +1,5 @@
 test_that("vpt_diff_of_means", {
   # Difference-of-means, after removing RTs below 200 ms or above 520 ms, on a VPT dataset
-  # The R-script in this test is also part of the splithalfr vignette: VPT Difference of Means
   library(splithalfr)
   
   # Example VPT data (in JASMIN1 format)

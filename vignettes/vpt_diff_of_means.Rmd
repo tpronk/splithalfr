@@ -93,14 +93,14 @@ vpt_scores <- sh_apply(ds_vpt, "UserID", vpt_fn_sets, vpt_fn_score)
 ```
 
 ## Checking Scores
-It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. Note that in the example dataset, some participations (such as UserID 8) did not have any correct responses in the patt == yes condition with RTs within the range [200, 520]. For these participants, a score could not be calculated.
+It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. Note that in the example dataset, some participations (such as UserID 28) did not have any correct responses in the patt == yes condition with RTs within the range [200, 520]. For these participations, a score could not be calculated.
 
 <br />
 
 # Calculating Split-half Reliability
 
 ## Generating Split Scores
-To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+To calculate split-half scores for each participation, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
 
 * UserID, which identifies participations
 * split, which counts splits

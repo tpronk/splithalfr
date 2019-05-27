@@ -10,7 +10,7 @@ ds_rapi
 }
 \description{
 The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
-problems within the last year.
+problems within the last year (\href{https://research.alcoholstudies.rutgers.edu/rapi}{White & Labouvie, 1989}).
 }
 \details{
 The dataset contains the following columns:
