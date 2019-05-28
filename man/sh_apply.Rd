@@ -8,17 +8,17 @@ sh_apply(ds, participation_id, fn_sets, fn_score, split_count = 0,
   show_progress = TRUE)
 }
 \arguments{
-\item{ds}{(data frame) data frame containing data to score}
+\item{ds}{(data frame) data frame containing data to score.}
 
-\item{participation_id}{(character) name of column that identifies participations in ds}
+\item{participation_id}{(character) name of column that identifies participations in ds.}
 
-\item{fn_sets}{(function) receives data from a single participation, should return a list of sets that may be split}
+\item{fn_sets}{(function) receives data from a single participation, should return a list of sets that may be split. Elements of sets that are data frames are split by row. Elements of sets that are lists or vectors are split by element.}
 
-\item{fn_score}{(function) receives full or split sets, should return a single number}
+\item{fn_score}{(function) receives full or split sets, should return a single number.}
 
-\item{split_count}{(numeric) Default: 0. If 0, applies fn_score on full set. If > 0, applies fn_score to split sets, split_count times}
+\item{split_count}{(numeric) Default: 0. If 0, applies fn_score on full set. If > 0, applies fn_score to split sets, split_count times.}
 
-\item{show_progress}{(logical) Default: TRUE If TRUE, prints current split number each split}
+\item{show_progress}{(logical) Default: TRUE If TRUE, prints current split number each split.}
 }
 \value{
 (data frame) If split_count == 0, applies fn_score result on full data and returns a data frame with a column for participation_id and a column named "score" for fn_score applied to the full data of a participation. If split_count > 0, applies fn_score on full data and returns data frame with a column for participation_id, a column "split" that counts splits, and "score_1" and "score_2" for fn_score applied to each split.
