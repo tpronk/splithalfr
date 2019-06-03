@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 library(splithalfr)
 library(dplyr)
 ```
-This vignette describes a scoring method introduced by [Greenwald, Nosek, and Banaji (2003)](http://dx.doi.org/10.1037/0022-3514.85.2.197); the improved d-score for Implicit Association Task (IATs) that require a correct response in order to continue to the next trial. This version of the d-score algorithm adds up all response times of all responses per trial. As this algorithm also specifies which participations to keep and to drop, functions from the [dplyr package](https://dplyr.tidyverse.org/) will be used to produce relevant summary statistics. Note that this vignette is more advanced that the others included in the splithalfr package, so it is not recommended as a first introduction on to how to use the splithalfr.
+This vignette describes a scoring method introduced by [Greenwald, Nosek, and Banaji (2003)](http://dx.doi.org/10.1037/0022-3514.85.2.197); the improved d-score for Implicit Association Task (IATs) that require a correct response in order to continue to the next trial. This version of the d-score algorithm adds up all response times of all responses per trial. As this algorithm also specifies which participants to keep and to drop, functions from the [dplyr package](https://dplyr.tidyverse.org/) will be used to produce relevant summary statistics. Note that this vignette is more advanced that the others included in the splithalfr package, so it is not recommended as a first introduction on to how to use the splithalfr.
 
 <br />
 
@@ -31,10 +31,10 @@ data("ds_iat", package = "splithalfr")
 ?ds_iat
 ```
 
-## Relevant Variables
+## Relevant variables
 The columns used in this example are:
 
-* UserID, which identifies participations
+* UserID, which identifies participants
 * block_type, which specifies IAT blocks relevant to calculate the d-score
 * attempt, in order to add RTs for trials 
 * response, in order to select correct responses only
@@ -46,7 +46,7 @@ First, the RT of timeout responses is set to the IAT timeout of 4000 ms.
 ```
 ds_iat[ds_iat$response == 3, ]$rt <- 4000
 ```
-The improved d-score algorithm specifies that participations whose RTs for over 10% of reponses are below 300 ms should be dropped. The R-script below identifies such participations. Note that none of the participations meet this criterion, so all can be kept for successive analyses.
+The improved d-score algorithm specifies that participants whose RTs for over 10% of reponses are below 300 ms should be dropped. The R-script below identifies such participants. Note that none of the participants meet this criterion, so all can be kept for successive analyses.
 ```
 ds_summary <- ds_iat %>%
   dplyr::group_by(UserID) %>%
@@ -58,7 +58,7 @@ Delete any attempts with RTs > 10,000 ms. These do not exist in the JASMIN2 IAT 
 ```
 ds_iat <- subset(ds_iat, rt <= 10000)
 ```
-Finally, RTs for each participation, block, and trial are summed. The block_type variable is also included, since it is required for further processing.
+Finally, RTs for each participant, block, and trial are summed. The block_type variable is also included, since it is required for further processing.
 ```
 ds_iat <- ds_iat %>%
     dplyr::group_by(UserID, block, trial) %>%
@@ -73,8 +73,8 @@ ds_iat <- ds_iat %>%
 # Scoring the AAT
 Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
 
-## Sets Function
-The sets function receives data from a single participation and returns a list of datasets for each condition. In this case, we will generate four lists, containing the trials from:
+## Sets function
+The sets function receives data from a single participant and returns a list of datasets for each condition. In this case, we will generate four lists, containing the trials from:
 
 * target 1 with attitude 1, practice block
 * target 1 with attitude 1, test block
@@ -92,8 +92,8 @@ iat_fn_sets <- function (ds) {
 }
 ```
 
-## Score Function
-The score function receives these four lists from a single participation. For both the pair of practice and test blocks, the following 'block score' is calculated:
+## Score function
+The score function receives these four lists from a single participant. For both the pair of practice and test blocks, the following 'block score' is calculated:
 
 1. Mean RT of target 1 with attribute 1 is calculated
 2. Mean RT of target 1 with attribute 2 is calculated
@@ -120,30 +120,37 @@ iat_fn_score = function(sets) {
 }
 ```
 
-## Calculating Scores
-To calculate scores for each participation, call sh_apply with four arguments: 
+## Calculating a score without the splithalfr
+By combining the sets and score functions, a score for a single participant can be calculated. For instance, the score of UserID 1 can be calculated via the statement below.
+```
+iat_fn_score(iat_fn_sets(subset(ds_iat, UserID == 1)))
+```
+
+
+## Calculating scores with the splithalfr
+To calculate scores for each participant, call sh_apply with four arguments: 
 
 1. the dataset
-2. column that identifies participations in the dataset
+2. column that identifies participants in the dataset
 3. sets function
 4. score function
 
-The sh_apply function will return a data frame with one row per participation, and as columns: one that identifies participations ("UserID" in this example) and a column "score", that contains the output of the score function.
+The sh_apply function will return a data frame with one row per participant, and as columns: one that identifies participants ("UserID" in this example) and a column "score", that contains the output of the score function.
 ```
 iat_scores <- sh_apply(ds_iat, "UserID", iat_fn_sets, iat_fn_score)
 ```
 
-## Checking Scores
-It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. 
+## Checking scores
+It is recommended to check your scoring method by calculating the score of a representative participant via a different approach. For splithalfr tests, the author has done so via Excel. 
 
 <br />
 
-# Calculating Split-half Reliability
+# Calculating split-half reliability
 
-## Generating Split Scores
-To calculate split-half scores for each participation, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+## Generating split Scores
+To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participant and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
 
-* UserID, which identifies participations
+* UserID, which identifies participants
 * split, which counts splits
 * score_1, and score_2, which are the scores calculated for each of the split datasets
 
@@ -156,8 +163,6 @@ Next, the output of sh_apply can be analyzed in order to assess reliability. By 
 ```
 # Spearman-Brown
 mean_sb_by_split(iat_splits)
-# Flanagan-Rulon
-mean_fr_by_split(iat_splits)
 ```
 
 

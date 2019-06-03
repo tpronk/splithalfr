@@ -17,7 +17,7 @@ test_that("iat_dscore_ri", {
   # Preproces; delete any attempts with RTs > 10,000 ms
   ds_iat <- subset(ds_iat, rt <= 10000)
   
-  # Preprocess; for each participation, block, and trial, sum RTs. Also keep block_type.
+  # Preprocess; for each participant, block, and trial, sum RTs. Also keep block_type.
   ds_iat <- ds_iat %>%
     dplyr::group_by(UserID, block, trial) %>%
     summarise(

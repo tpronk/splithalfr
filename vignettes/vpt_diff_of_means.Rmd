@@ -28,10 +28,10 @@ Load the included VPT dataset and inspect its documentation.
 data("ds_vpt", package = "splithalfr")
 ?ds_vpt
 ```
-## Relevant Variables
+## Relevant variables
 The columns used in this example are:
 
-* UserID, which identifies participations
+* UserID, which identifies participants
 * block_type, in order to select assessment blocks only
 * patt, in order to compare trials in which the probe is at the test or at the control stimulus
 * response, in order to select correct responses only
@@ -48,8 +48,8 @@ ds_vpt <- subset(ds_vpt, block_type == "assess")
 # Scoring the VPT
 Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
 
-## Sets Function
-The sets function receives data from a single participation and returns a list of datasets for each condition. In this case, we will generate two lists: one with data from trials with probe-at-test (patt == "yes") and one with data from trials with probe-at-control (patt == "no"). 
+## Sets function
+The sets function receives data from a single participant and returns a list of datasets for each condition. In this case, we will generate two lists: one with data from trials with probe-at-test (patt == "yes") and one with data from trials with probe-at-control (patt == "no"). 
 ```
 vpt_fn_sets <- function (ds) {
   return (list(
@@ -61,8 +61,8 @@ vpt_fn_sets <- function (ds) {
 }
 ```
 
-## Score Function
-The score function receives these two lists from a single participation and for each: 
+## Score function
+The score function receives these two lists from a single participant and for each: 
 
 1. selects only correct responses
 2. drops RTs outside of the range [200, 520]
@@ -79,45 +79,49 @@ vpt_fn_score <- function (sets) {
 }
 ```
 
-## Calculating Scores
-To calculate scores for each participation, call sh_apply with four arguments: 
+## Calculating a score without the splithalfr
+By combining the sets and score functions, a score for a single participant can be calculated. For instance, the score of UserID 1 can be calculated via the statement below.
+```
+vpt_fn_score(vpt_fn_sets(subset(ds_vpt, UserID == 1)))
+```
+
+## Calculating scores with the splithalfr
+To calculate scores for each participant, call sh_apply with four arguments: 
 
 1. the dataset
-2. column that identifies participations in the dataset
+2. column that identifies participants in the dataset
 3. sets function
 4. score function
 
-The sh_apply function will return a data frame with one row per participation, and as columns: one that identifies participations ("UserID" in this example) and a column "score", that contains the output of the score function.
+The sh_apply function will return a data frame with one row per participant, and as columns: one that identifies participants ("UserID" in this example) and a column "score", that contains the output of the score function.
 ```
 vpt_scores <- sh_apply(ds_vpt, "UserID", vpt_fn_sets, vpt_fn_score)
 ```
 
-## Checking Scores
-It is recommended to check your scoring method by calculating the score of a representative participation via a different approach. For splithalfr tests, the author has done so via Excel. Note that in the example dataset, some participations (such as UserID 28) did not have any correct responses in the patt == yes condition with RTs within the range [200, 520]. For these participations, a score could not be calculated.
+## Checking scores
+It is recommended to check your scoring method by calculating the score of a representative participant via a different approach. For splithalfr tests, the author has done so via Excel. Note that in the example dataset, some participants (such as UserID 28) did not have any correct responses in the patt == yes condition with RTs within the range [200, 520]. For these participants, a score could not be calculated.
 
 <br />
 
-# Calculating Split-half Reliability
+# Calculating split-half reliability
 
-## Generating Split Scores
-To calculate split-half scores for each participation, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participation and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+## Generating split scores
+To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participant and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
 
-* UserID, which identifies participations
+* UserID, which identifies participants
 * split, which counts splits
 * score_1, and score_2, which are the scores calculated for each of the split datasets
 
-Since for some participations a score could not be calculated, the split scores are missing for these participations as well. 
+Since for some participants a score could not be calculated, the split scores are missing for these participants as well. 
 ```
 vpt_splits <- sh_apply(ds_vpt, "UserID", vpt_fn_sets, vpt_fn_score, 100)
 ```
 
-## Calculating Reliability Averaged over Splits
+## Calculating reliability averaged over splits
 Next, the output of sh_apply can be analyzed in order to assess reliability. By default, functions are provided that automatically calculate mean Spearman-Brown reliability (mean_sb_by_split) or Flanagan-Rulon reliability (mean_fr_by_split) on splithalfr output. If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability.
 ```
 # Spearman-Brown
 mean_sb_by_split(vpt_splits)
-# Flanagan-Rulon
-mean_fr_by_split(vpt_splits)
 ```
 
 

@@ -2,17 +2,18 @@
 #'
 #' The JASMIN2 IAT closely follows the original IAT procedure
 #' (\href{https://dx.doi.org/10.1037/0022-3514.74.6.1464}{Greenwald, McGhee, & Schwartz, 1998}),
-#' except that target and attribute trials do not alternate.  Upon a correct response the next trial starts and
-#' upon an incorrect response the current trial is repeated. The response to each trial is logged.
+#' except that target and attribute trials do not alternate.  Upon a correct response, the next trial starts.
+#' Upon an incorrect response, the current trial is repeated. The response to each trial is logged.
 #' This particular dataset is from a Drinker Identity IAT
 #' (\href{https://dx.doi.org/10.1037/a0027640}{Lindgren et al., 2013})
 #' that was used in a cross-cultural study. Drinker was target 1, non-drinker was target 2, me was attribute 1, and not-me was attribute 2.
+#' The dataset contains one row per trial.
 #' This dataset was graciously provided by \href{https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en}{Helle Larsen}.
 #'
-#' Overview of variables:
+#' Overview of columns:
 #'
 #' \itemize{
-#'   \item UserID. Identifies participations
+#'   \item UserID. Identifies participants
 #'   \item t1_left. If TRUE, the first combination block had target 1 on the left (and target 2 on the right)
 #'   \item a1_left. If TRUE, the first combination block had attribute 1 on the left (and attribute 2 on the right)
 #'   \item cat. Category that stimulus belonged to
@@ -47,10 +48,11 @@
 #' of a cognitive bias modification study. The "test" stimuli were alcoholic beverages and the "control" stimuli
 #' were non-alcoholic beverages, selected from the Amsterdam Beverage Picture Set
 #' \href{https://doi.org/10.1111/acer.12853}{(Pronk, Deursen, Beraha, Larsen, & Wiers, 2015)}.
+#' The dataset contains one row per trial.
 #' This dataset was graciously provided by \href{https://www.researchgate.net/profile/Marilisa_Boffo}{Marilisa Boffo}.
 #'
 #' \itemize{
-#'   \item UserID. Identifies participations
+#'   \item UserID. Identifies participants
 #'   \item patt. Probe-at-test. If "yes", the probe was positioned at the test stimulus. If "no", the probe was positioned at the control stimulus.
 #'   \item phor. Probe horizontal position. Values: "left" or "right"
 #'   \item thor. Test horizontal position. Values: "left" or "right"
@@ -75,11 +77,11 @@
 #' out, until it disappeared from the screen. The first response to a stimulus is logged, as well as the final
 #' response, as defined by the stimulus completely zooming in or out. Upon a correct final response
 #' the next trial starts and upon an incorrect final response the current trial is repeated. The first and final
-#' response to each trial is logged.
+#' response to each trial is logged. The dataset contains one row per trial.
 #' This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
 #'
 #' \itemize{
-#'   \item UserID. Identifies participations
+#'   \item UserID. Identifies participants
 #'   \item approach_left. If TRUE, participants were instructed to approach left rotated stimuli. If FALSE, participants were instructed to approach right rotated stimuli.
 #'   \item trial_type. Values: "approach" or "avoid"
 #'   \item cat. Stimulus category: practice, test, or control
@@ -99,10 +101,11 @@
 #'
 #' The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
 #' problems within the last year (\href{https://research.alcoholstudies.rutgers.edu/rapi}{White & Labouvie, 1989}).
-#'
+#' The dataset contains one row per participant.
+#' 
 #' The dataset contains the following columns:
 #' \itemize{
-#'   \item twnr. Identifies participations
+#'   \item twnr. Identifies participants
 #'   \item V1 to V23. Answers on each of the 23 RAPI items
 #' }
 #'
