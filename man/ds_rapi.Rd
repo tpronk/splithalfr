@@ -11,11 +11,12 @@ ds_rapi
 \description{
 The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
 problems within the last year (\href{https://research.alcoholstudies.rutgers.edu/rapi}{White & Labouvie, 1989}).
+The dataset contains one row per participant.
 }
 \details{
 The dataset contains the following columns:
 \itemize{
-  \item twnr. Identifies participations
+  \item twnr. Identifies participants
   \item V1 to V23. Answers on each of the 23 RAPI items
 }
 

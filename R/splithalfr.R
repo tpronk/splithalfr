@@ -1,6 +1,6 @@
 #' splithalfr: Extensible Bootstrapped Split-Half Reliabilities
 #'
-#' Calculates scores and bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires.
+#' Calculates scores and estimates bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires.
 #' The splithalfr can be extended by custom scoring methods for user-provided datasets.
 #'
 #' The splithalfr vignettes demonstrate how to write a custom scoring method based on a set of common questionnaire and RT task scoring methods,
@@ -119,7 +119,6 @@ sh_apply <- function (
         # Apply this function to the data
         group_modify(function (ds_group, grouping_vars) {
           return(split_score(
-            # Step 1, sets we use in calculation
             sets = fn_sets(ds_group),
             fn_score = fn_score
           ))

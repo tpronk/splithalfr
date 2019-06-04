@@ -50,7 +50,7 @@ test_that("aat_double_diff_of_medians", {
     "score of UserID 190 did not match with score calculated manually"
   )
   
-  # Calculate two split-half reliabilities
+  # Calculate two split-half scores
   aat_splits <- sh_apply(
     ds_aat,
     "UserID",

@@ -50,7 +50,7 @@ test_that("vpt_diff_of_means", {
     "score of UserID 23 did not match with score calculated manually"
   )  
   
-  # Calculate two split-half reliabilities
+  # Calculate two split-half scores
   vpt_splits <- sh_apply(
     ds_vpt,
     "UserID",

@@ -34,7 +34,7 @@ test_that("rapi_sum", {
     "score of twnr 396 did not match with score calculated manually"
   )    
   
-  # Calculate two split-half reliabilities
+  # Calculate two split-half scores
   rapi_splits <- sh_apply(
     ds_rapi,
     "twnr",

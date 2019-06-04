@@ -6,7 +6,7 @@
 \alias{splithalfr-package}
 \title{splithalfr: Extensible Bootstrapped Split-Half Reliabilities}
 \description{
-Calculates scores and bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires.
+Calculates scores and estimates bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires.
 The splithalfr can be extended by custom scoring methods for user-provided datasets.
 }
 \details{

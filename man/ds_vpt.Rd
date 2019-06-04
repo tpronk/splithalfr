@@ -18,11 +18,12 @@ This particular VPT was part of the pre-measurement
 of a cognitive bias modification study. The "test" stimuli were alcoholic beverages and the "control" stimuli
 were non-alcoholic beverages, selected from the Amsterdam Beverage Picture Set
 \href{https://doi.org/10.1111/acer.12853}{(Pronk, Deursen, Beraha, Larsen, & Wiers, 2015)}.
+The dataset contains one row per trial.
 This dataset was graciously provided by \href{https://www.researchgate.net/profile/Marilisa_Boffo}{Marilisa Boffo}.
 }
 \details{
 \itemize{
-  \item UserID. Identifies participations
+  \item UserID. Identifies participants
   \item patt. Probe-at-test. If "yes", the probe was positioned at the test stimulus. If "no", the probe was positioned at the control stimulus.
   \item phor. Probe horizontal position. Values: "left" or "right"
   \item thor. Test horizontal position. Values: "left" or "right"

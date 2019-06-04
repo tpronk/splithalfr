@@ -11,18 +11,19 @@ ds_iat
 \description{
 The JASMIN2 IAT closely follows the original IAT procedure
 (\href{https://dx.doi.org/10.1037/0022-3514.74.6.1464}{Greenwald, McGhee, & Schwartz, 1998}),
-except that target and attribute trials do not alternate.  Upon a correct response the next trial starts and
-upon an incorrect response the current trial is repeated. The response to each trial is logged.
+except that target and attribute trials do not alternate.  Upon a correct response, the next trial starts.
+Upon an incorrect response, the current trial is repeated. The response to each trial is logged.
 This particular dataset is from a Drinker Identity IAT
 (\href{https://dx.doi.org/10.1037/a0027640}{Lindgren et al., 2013})
 that was used in a cross-cultural study. Drinker was target 1, non-drinker was target 2, me was attribute 1, and not-me was attribute 2.
+The dataset contains one row per trial.
 This dataset was graciously provided by \href{https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en}{Helle Larsen}.
 }
 \details{
-Overview of variables:
+Overview of columns:
 
 \itemize{
-  \item UserID. Identifies participations
+  \item UserID. Identifies participants
   \item t1_left. If TRUE, the first combination block had target 1 on the left (and target 2 on the right)
   \item a1_left. If TRUE, the first combination block had attribute 1 on the left (and attribute 2 on the right)
   \item cat. Category that stimulus belonged to

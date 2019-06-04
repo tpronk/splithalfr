@@ -73,8 +73,8 @@ ds_iat <- ds_iat %>%
 # Scoring the AAT
 Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
 
-## Sets function
-The sets function receives data from a single participant and returns a list of datasets for each condition. In this case, we will generate four lists, containing the trials from:
+## Defining the sets function
+The sets function receives data from a single participant and returns a list of datasets for each condition. In this case, we will generate four data frames, containing the trials from:
 
 * target 1 with attitude 1, practice block
 * target 1 with attitude 1, test block
@@ -92,8 +92,8 @@ iat_fn_sets <- function (ds) {
 }
 ```
 
-## Score function
-The score function receives these four lists from a single participant. For both the pair of practice and test blocks, the following 'block score' is calculated:
+## Defining the score function
+The score function receives these four data frames from a single participant. For both the pair of practice and test blocks, the following 'block score' is calculated:
 
 1. Mean RT of target 1 with attribute 1 is calculated
 2. Mean RT of target 1 with attribute 2 is calculated
@@ -145,9 +145,9 @@ It is recommended to check your scoring method by calculating the score of a rep
 
 <br />
 
-# Calculating split-half reliability
+# Estimating split-half reliability
 
-## Generating split Scores
+## Calculating split Scores
 To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participant and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
 
 * UserID, which identifies participants
@@ -155,11 +155,11 @@ To calculate split-half scores for each participant, call sh_apply with an addit
 * score_1, and score_2, which are the scores calculated for each of the split datasets
 
 ```
-iat_splits <- sh_apply(ds_iat, "UserID", iat_fn_sets, iat_fn_score, 100)
+iat_splits <- sh_apply(ds_iat, "UserID", iat_fn_sets, iat_fn_score, 1000)
 ```
 
-## Calculating Reliability Averaged over Splits
-Next, the output of sh_apply can be analyzed in order to assess reliability. By default, functions are provided that automatically calculate mean Spearman-Brown reliability (mean_sb_by_split) or Flanagan-Rulon reliability (mean_fr_by_split) on splithalfr output. If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability. 
+## Estimating Reliability Averaged over Splits
+Next, the output of sh_apply can be analyzed in order to assess reliability. By default, functions are provided that automatically calculate mean Spearman-Brown reliability (mean_sb_by_split) or Flanagan-Rulon reliability (mean_fr_by_split). If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability. 
 ```
 # Spearman-Brown
 mean_sb_by_split(iat_splits)

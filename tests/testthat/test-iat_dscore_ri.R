@@ -72,7 +72,7 @@ test_that("iat_dscore_ri", {
     "score of UserID 1 did not match with score calculated manually"
   )  
   
-  # Calculate two split-half reliabilities
+  # Calculate two split-half scores
   iat_splits <- sh_apply(
     ds_iat,
     "UserID",

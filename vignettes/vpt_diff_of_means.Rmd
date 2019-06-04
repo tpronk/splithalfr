@@ -48,8 +48,8 @@ ds_vpt <- subset(ds_vpt, block_type == "assess")
 # Scoring the VPT
 Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
 
-## Sets function
-The sets function receives data from a single participant and returns a list of datasets for each condition. In this case, we will generate two lists: one with data from trials with probe-at-test (patt == "yes") and one with data from trials with probe-at-control (patt == "no"). 
+## Defining the sets function
+The sets function receives data from a single participant and returns a list of datasets for each condition. In this case, we will generate two data frames: one with data from trials with probe-at-test (patt == "yes") and one with data from trials with probe-at-control (patt == "no"). 
 ```
 vpt_fn_sets <- function (ds) {
   return (list(
@@ -61,8 +61,8 @@ vpt_fn_sets <- function (ds) {
 }
 ```
 
-## Score function
-The score function receives these two lists from a single participant and for each: 
+## Defining the score function
+The score function receives these two data frames from a single participant and for each: 
 
 1. selects only correct responses
 2. drops RTs outside of the range [200, 520]
@@ -103,7 +103,7 @@ It is recommended to check your scoring method by calculating the score of a rep
 
 <br />
 
-# Calculating split-half reliability
+# Estimating split-half reliability
 
 ## Generating split scores
 To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participant and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
@@ -114,11 +114,11 @@ To calculate split-half scores for each participant, call sh_apply with an addit
 
 Since for some participants a score could not be calculated, the split scores are missing for these participants as well. 
 ```
-vpt_splits <- sh_apply(ds_vpt, "UserID", vpt_fn_sets, vpt_fn_score, 100)
+vpt_splits <- sh_apply(ds_vpt, "UserID", vpt_fn_sets, vpt_fn_score, 1000)
 ```
 
-## Calculating reliability averaged over splits
-Next, the output of sh_apply can be analyzed in order to assess reliability. By default, functions are provided that automatically calculate mean Spearman-Brown reliability (mean_sb_by_split) or Flanagan-Rulon reliability (mean_fr_by_split) on splithalfr output. If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability.
+## Estimating reliability averaged over splits
+Next, the output of sh_apply can be analyzed in order to assess reliability. By default, functions are provided that automatically calculate mean Spearman-Brown reliability (mean_sb_by_split) or Flanagan-Rulon reliability (mean_fr_by_split). If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability.
 ```
 # Spearman-Brown
 mean_sb_by_split(vpt_splits)

@@ -17,12 +17,12 @@ while avoid responses were given via the arrow up key. Upon a response, the stim
 out, until it disappeared from the screen. The first response to a stimulus is logged, as well as the final
 response, as defined by the stimulus completely zooming in or out. Upon a correct final response
 the next trial starts and upon an incorrect final response the current trial is repeated. The first and final
-response to each trial is logged.
+response to each trial is logged. The dataset contains one row per trial.
 This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
 }
 \details{
 \itemize{
-  \item UserID. Identifies participations
+  \item UserID. Identifies participants
   \item approach_left. If TRUE, participants were instructed to approach left rotated stimuli. If FALSE, participants were instructed to approach right rotated stimuli.
   \item trial_type. Values: "approach" or "avoid"
   \item cat. Stimulus category: practice, test, or control
