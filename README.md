@@ -9,7 +9,7 @@ The splithalfr vignettes demonstrate how to write a custom scoring algorithm bas
 * `vignette("iat_dscore_ri")` Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial ([Greenwald, Nosek, & Banaji, 2003](http://dx.doi.org/10.1037/0022-3514.85.2.197))
 
 ## Tests
-The code included in each vignette also serves as a test of correct functioning of the splithalfr, by comparing the splithalfr score for a single participant with the same score calculated via Excel. The materials for each test can be found in the tests directory.
+The R script included in each vignette is validated by comparing the splithalfr score for a single participant with the same score calculated via Excel. The materials for each test can be found in the tests directory.
 
 ## Simulations
 The splithalfr splitting algorithm has been validated via a set of simulations which are not included in this package. The R script
