@@ -7,7 +7,7 @@
 \title{splithalfr: Extensible Bootstrapped Split-Half Reliabilities}
 \description{
 Calculates scores and estimates bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires.
-The splithalfr can be extended by custom scoring algorithms for user-provided datasets.
+The splithalfr can be extended with custom scoring algorithms for user-provided datasets.
 }
 \details{
 The splithalfr vignettes demonstrate how to write a custom scoring algorithm based on included example scoring algorithms and datasets:

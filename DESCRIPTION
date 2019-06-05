@@ -3,8 +3,8 @@ Title: Extensible Bootstrapped Split-Half Reliabilities
 Version: 1.0.9
 Author: Thomas Pronk [aut, cre]
 Authors@R: person("Thomas", "Pronk", email = "pronkthomas@gmail.com", role = c("aut", "cre"))
-Description: Calculates scores and estimates bootstrapped split-half reliabilities for reaction time tasks and questionnaires. The splithalfr can be extended by custom scoring algorithms for user-provided datasets.
-Depends: R (>= 3.5)
+Description: Calculates scores and estimates bootstrapped split-half reliabilities for reaction time tasks and questionnaires. The splithalfr can be extended with custom scoring algorithms for user-provided datasets.
+Depends: R (>= 3.6)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
