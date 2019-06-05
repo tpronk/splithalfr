@@ -2,7 +2,7 @@
 % Please edit documentation in R/splithalfr.R
 \name{mean_sb_by_split}
 \alias{mean_sb_by_split}
-\title{Spearman-Brown reliability averaged over each split. Can be applied to output of sh_apply}
+\title{Spearman-Brown reliability coefficient averaged over each split. Can be applied to output of sh_apply}
 \usage{
 mean_sb_by_split(ds)
 }
@@ -10,8 +10,8 @@ mean_sb_by_split(ds)
 \item{ds}{(data frame) a data frame with columns "split", "score_1", and "score_2"}
 }
 \value{
-(numeric) mean Spearman-Brown reliability
+(numeric) mean Spearman-Brown coefficient
 }
 \description{
-Spearman-Brown reliability averaged over each split. Can be applied to output of sh_apply
+Spearman-Brown reliability coefficient averaged over each split. Can be applied to output of sh_apply
 }

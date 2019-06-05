@@ -12,5 +12,5 @@ The splithalfr vignettes demonstrate how to write a custom scoring algorithm bas
 The R script included in each vignette is validated by comparing the splithalfr score for a single participant with the same score calculated via Excel. The materials for each test can be found in the tests directory.
 
 ## Simulations
-The splithalfr splitting algorithm has been validated via a set of simulations which are not included in this package. The R script
+The splithalfr splitting algorithm has been validated via a set of simulations that are not included in this package. The R script
 for these simulations can be found [here](https://github.com/tpronk/splithalfr_simulation).

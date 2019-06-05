@@ -7,11 +7,11 @@
 \title{splithalfr: Extensible Bootstrapped Split-Half Reliabilities}
 \description{
 Calculates scores and estimates bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires.
-The splithalfr can be extended by custom scoring methods for user-provided datasets.
+The splithalfr can be extended by custom scoring algorithms for user-provided datasets.
 }
 \details{
-The splithalfr vignettes demonstrate how to write a custom scoring method based on a set of common questionnaire and RT task scoring methods,
-using included example datasets:
+The splithalfr vignettes demonstrate how to write a custom scoring algorithm based on included example scoring algorithms and datasets:
+
 \itemize{
   \item \code{vignette("rapi_sum")} Sum-score for data of the 23-item version of the Rutgers Alcohol Problem Index (\href{https://research.alcoholstudies.rutgers.edu/rapi}{White & Labouvie, 1989})
   \item \code{vignette("vpt_diff_of_means")} Difference of mean RTs for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data (\href{https://doi.org/10.1080/026999399379050}{Mogg & Bradley, 1999})
@@ -19,10 +19,10 @@ using included example datasets:
   \item \code{vignette("iat_dscore_ri")} Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial (\href{http://dx.doi.org/10.1037/0022-3514.85.2.197}{Greenwald, Nosek, & Banaji, 2003})
 }
 
-The code included in each vignette also serves as a test of correct functioning of the splithalfr, by comparing the splithalfr
+The R script included in each vignette is validated by comparing the splithalfr
 score for a single participant with the same score calculated via Excel. The materials for each test can be found in
 \href{https://github.com/tpronk/splithalfr/tree/master/tests}{the splithalfr GitHub repository}
 
-The splithalfr splitting algorithm has been validated via a set of simulations which is not included in this package. The R script 
+The splithalfr splitting algorithm has been validated via a set of simulations that are not included in this package. The R script 
 for these simulations can be found \href{https://github.com/tpronk/splithalfr_simulation}{here}.
 }

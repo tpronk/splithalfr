@@ -9,15 +9,15 @@
 ds_aat
 }
 \description{
-The JASMIN2 AAT is an irrelevant feature task, in which participants were instructed to
+The JASMIN2 AAT was an irrelevant feature task, in which participants were instructed to
 approach/avoid left/right rotated stimuli. This particular AAT presented stimuli from a "test"
 category, which were math-related pictures, and from a "control" category, which were pictures unrelated
 to math. It registered approach responses by participants pressing (and holding) the arrow down key,
 while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
-out, until it disappeared from the screen. The first response to a stimulus is logged, as well as the final
+out, until it disappeared from the screen. The first response to a stimulus was logged, as well as the final
 response, as defined by the stimulus completely zooming in or out. Upon a correct final response
-the next trial starts and upon an incorrect final response the current trial is repeated. The first and final
-response to each trial is logged. The dataset contains one row per trial.
+the next trial started and upon an incorrect final response the current trial was repeated. The first and final
+response to each trial was logged. The dataset contains one row per trial.
 This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
 }
 \details{

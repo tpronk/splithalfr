@@ -9,11 +9,11 @@
 ds_vpt
 }
 \description{
-The JASMIN1 VPT distinguishes between "test" stimuli, which are in some way assumed to be salient to the participant
-and "control" stimuli, which are not. Test and control stimuli are  presented in pairs, with
-one left and one right, followed by a probe that is an arrow pointing up or down. Participants need
-to indicate whether the arrow points up or down. Upon a correct response the next trial starts and
-upon an incorrect response the current trial is repeated. Only the first response of each trial is logged.
+The JASMIN1 VPT distinguished between "test" stimuli, which are in some way assumed to be salient to the participant
+and "control" stimuli, which are not. Test and control stimuli were presented in pairs, with
+one left and one right, followed by a probe that was an arrow pointing up or down. Participants needed
+to indicate whether the arrow pointed up or down. Upon a correct response the next trial started and
+upon an incorrect response the current trial was repeated. Only the first response to a new trial was logged.
 This particular VPT was part of the pre-measurement
 of a cognitive bias modification study. The "test" stimuli were alcoholic beverages and the "control" stimuli
 were non-alcoholic beverages, selected from the Amsterdam Beverage Picture Set

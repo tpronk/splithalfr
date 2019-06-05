@@ -2,7 +2,7 @@
 % Please edit documentation in R/splithalfr.R
 \name{mean_fr_by_split}
 \alias{mean_fr_by_split}
-\title{Flanagon-Rulon reliability averaged over each split. Can be applied to output of sh_apply}
+\title{Flanagan-Rulon reliability coefficient averaged over each split. Can be applied to output of sh_apply}
 \usage{
 mean_fr_by_split(ds)
 }
@@ -10,8 +10,8 @@ mean_fr_by_split(ds)
 \item{ds}{(data frame) a data frame with columns "split", "score_1", and "score_2"}
 }
 \value{
-(numeric) mean Flanagon-Rulon reliability
+(numeric) mean Flanagan-Rulon coefficient
 }
 \description{
-Flanagon-Rulon reliability averaged over each split. Can be applied to output of sh_apply
+Flanagan-Rulon reliability coefficient averaged over each split. Can be applied to output of sh_apply
 }

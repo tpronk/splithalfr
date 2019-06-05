@@ -1,10 +1,10 @@
 #' splithalfr: Extensible Bootstrapped Split-Half Reliabilities
 #'
 #' Calculates scores and estimates bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires.
-#' The splithalfr can be extended by custom scoring methods for user-provided datasets.
+#' The splithalfr can be extended by custom scoring algorithms for user-provided datasets.
 #'
-#' The splithalfr vignettes demonstrate how to write a custom scoring method based on a set of common questionnaire and RT task scoring methods,
-#' using included example datasets:
+#' The splithalfr vignettes demonstrate how to write a custom scoring algorithm based on included example scoring algorithms and datasets:
+#'
 #' \itemize{
 #'   \item \code{vignette("rapi_sum")} Sum-score for data of the 23-item version of the Rutgers Alcohol Problem Index (\href{https://research.alcoholstudies.rutgers.edu/rapi}{White & Labouvie, 1989})
 #'   \item \code{vignette("vpt_diff_of_means")} Difference of mean RTs for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data (\href{https://doi.org/10.1080/026999399379050}{Mogg & Bradley, 1999})
@@ -12,11 +12,11 @@
 #'   \item \code{vignette("iat_dscore_ri")} Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial (\href{http://dx.doi.org/10.1037/0022-3514.85.2.197}{Greenwald, Nosek, & Banaji, 2003})
 #' }
 #' 
-#' The code included in each vignette also serves as a test of correct functioning of the splithalfr, by comparing the splithalfr
+#' The R script included in each vignette is validated by comparing the splithalfr
 #' score for a single participant with the same score calculated via Excel. The materials for each test can be found in
 #' \href{https://github.com/tpronk/splithalfr/tree/master/tests}{the splithalfr GitHub repository}
 #' 
-#' The splithalfr splitting algorithm has been validated via a set of simulations which is not included in this package. The R script 
+#' The splithalfr splitting algorithm has been validated via a set of simulations that are not included in this package. The R script 
 #' for these simulations can be found \href{https://github.com/tpronk/splithalfr_simulation}{here}.
 #'
 #' @importFrom dplyr %>% group_by group_modify summarize
@@ -75,7 +75,7 @@ split_score <- function (
   ))
 }
 
-#' Apply a scoring method to each participant using full or split data set
+#' Apply a scoring algorithm to each participant using full or split data set
 #'
 #' @export
 #' @param ds (data frame) data frame containing data to score.
@@ -83,8 +83,8 @@ split_score <- function (
 #' @param fn_sets (function) receives data from a single participant, should return a list of sets that may be split. Elements of sets that are data frames are split by row. Elements of sets that are lists or vectors are split by element.
 #' @param fn_score (function) receives full or split sets, should return a single number.
 #' @param split_count (numeric) Default: 0. If 0, applies fn_score on full set. If > 0, applies fn_score to split sets, split_count times.
-#' @param show_progress (logical) Default: TRUE If TRUE, prints current split number each split.
-#' @return (data frame) If split_count == 0, applies fn_score result on full data and returns a data frame with a column for participant_id and a column named "score" for fn_score applied to the full data of a participant. If split_count > 0, applies fn_score on full data and returns data frame with a column for participant_id, a column "split" that counts splits, and "score_1" and "score_2" for fn_score applied to each split.
+#' @param show_progress (logical) Default: TRUE. If TRUE, prints current split number each split.
+#' @return (data frame) If split_count == 0, returns a data frame with a column for participant_id and a column named "score" for fn_score applied to the full data of each participant. If split_count > 0, it splits each element returned by fn_sets into two halves that differ at most by one in size, applies fn_score on split data, and returns a data frame with a column for participant_id, a column "split" that counts splits, and "score_1" and "score_2" with the score of each split.
 sh_apply <- function (
   ds,
   participant_id,
@@ -166,7 +166,7 @@ spearman_brown <- function (x, y) {
 mean_rel_by_split <- function (ds, fn_rel) {
   # Check on missing values
   if (any(is.na(ds[c("score_1", "score_2")]))) {
-    warning ("input data contained missing values; these were pairwise removed before calculating reliability")
+    warning ("input data contained missing values; these were pairwise removed before calculating the reliability coefficient")
     # Remove missing values pairwise
     rows_missing = is.na(ds$score_1) | is.na(ds$score_2)
     ds = ds[!rows_missing,]
@@ -179,20 +179,20 @@ mean_rel_by_split <- function (ds, fn_rel) {
   return (mean(ds_rs$r))
 }
 
-#' Flanagon-Rulon reliability averaged over each split. Can be applied to output of sh_apply
+#' Flanagan-Rulon reliability coefficient averaged over each split. Can be applied to output of sh_apply
 #'
 #' @export
 #' @param ds (data frame) a data frame with columns "split", "score_1", and "score_2"
-#' @return (numeric) mean Flanagon-Rulon reliability
+#' @return (numeric) mean Flanagan-Rulon coefficient
 mean_fr_by_split <- function (ds) {
   return (mean_rel_by_split(ds, flanagan_rulon))
 }
 
-#' Spearman-Brown reliability averaged over each split. Can be applied to output of sh_apply
+#' Spearman-Brown reliability coefficient averaged over each split. Can be applied to output of sh_apply
 #'
 #' @export
 #' @param ds (data frame) a data frame with columns "split", "score_1", and "score_2"
-#' @return (numeric) mean Spearman-Brown reliability
+#' @return (numeric) mean Spearman-Brown coefficient
 mean_sb_by_split <- function (ds) {
   return (mean_rel_by_split(ds, spearman_brown))
 }

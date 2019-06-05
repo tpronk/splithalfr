@@ -1,9 +1,9 @@
 #' Example Implicit Association Task (IAT) Data in JASMIN2 Format
 #'
-#' The JASMIN2 IAT closely follows the original IAT procedure
+#' The JASMIN2 IAT closely followed the original IAT procedure
 #' (\href{https://dx.doi.org/10.1037/0022-3514.74.6.1464}{Greenwald, McGhee, & Schwartz, 1998}),
-#' except that target and attribute trials do not alternate.  Upon a correct response, the next trial starts.
-#' Upon an incorrect response, the current trial is repeated. The response to each trial is logged.
+#' except that target and attribute trials did not alternate.  Upon a correct response, the next trial started.
+#' Upon an incorrect response, the current trial was repeated. The response to each trial was logged.
 #' This particular dataset is from a Drinker Identity IAT
 #' (\href{https://dx.doi.org/10.1037/a0027640}{Lindgren et al., 2013})
 #' that was used in a cross-cultural study. Drinker was target 1, non-drinker was target 2, me was attribute 1, and not-me was attribute 2.
@@ -39,11 +39,11 @@
 
 #' Example Visual Probe Task (VPT) Measurement Data in JASMIN1 Format
 #'
-#' The JASMIN1 VPT distinguishes between "test" stimuli, which are in some way assumed to be salient to the participant
-#' and "control" stimuli, which are not. Test and control stimuli are  presented in pairs, with
-#' one left and one right, followed by a probe that is an arrow pointing up or down. Participants need
-#' to indicate whether the arrow points up or down. Upon a correct response the next trial starts and
-#' upon an incorrect response the current trial is repeated. Only the first response of each trial is logged.
+#' The JASMIN1 VPT distinguished between "test" stimuli, which are in some way assumed to be salient to the participant
+#' and "control" stimuli, which are not. Test and control stimuli were presented in pairs, with
+#' one left and one right, followed by a probe that was an arrow pointing up or down. Participants needed
+#' to indicate whether the arrow pointed up or down. Upon a correct response the next trial started and
+#' upon an incorrect response the current trial was repeated. Only the first response to a new trial was logged.
 #' This particular VPT was part of the pre-measurement
 #' of a cognitive bias modification study. The "test" stimuli were alcoholic beverages and the "control" stimuli
 #' were non-alcoholic beverages, selected from the Amsterdam Beverage Picture Set
@@ -69,15 +69,15 @@
 
 #' Example Approach Avoidance Task (AAT) Measurement Data in JASMIN2 Format
 #'
-#' The JASMIN2 AAT is an irrelevant feature task, in which participants were instructed to
+#' The JASMIN2 AAT was an irrelevant feature task, in which participants were instructed to
 #' approach/avoid left/right rotated stimuli. This particular AAT presented stimuli from a "test"
 #' category, which were math-related pictures, and from a "control" category, which were pictures unrelated
 #' to math. It registered approach responses by participants pressing (and holding) the arrow down key,
 #' while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
-#' out, until it disappeared from the screen. The first response to a stimulus is logged, as well as the final
+#' out, until it disappeared from the screen. The first response to a stimulus was logged, as well as the final
 #' response, as defined by the stimulus completely zooming in or out. Upon a correct final response
-#' the next trial starts and upon an incorrect final response the current trial is repeated. The first and final
-#' response to each trial is logged. The dataset contains one row per trial.
+#' the next trial started and upon an incorrect final response the current trial was repeated. The first and final
+#' response to each trial was logged. The dataset contains one row per trial.
 #' This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
 #'
 #' \itemize{

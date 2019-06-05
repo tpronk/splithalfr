@@ -67,11 +67,11 @@ rapi_fn_score(rapi_fn_sets(subset(ds_rapi, twnr == 1)))
 To calculate scores for each participant, call sh_apply with four arguments: 
 
 1. the dataset
-2. column that identifies participants in the dataset
-3. sets function
-4. score function
+2. the column that identifies participants in the dataset
+3. the sets function
+4. the score function
 
-The sh_apply function will return a data frame with one row per participant, and as columns: one that identifies participants ("twnr" in this example) and a column "score", that contains the output of the score function.
+The sh_apply function will return a data frame with one row per participant, and two columns: one that identifies participants ("twnr" in this example) and a column "score", that contains the output of the score function.
 ```
 rapi_scores <- sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score)
 ```
@@ -84,7 +84,7 @@ It is recommended to check your scoring method by calculating the score of a rep
 # Estimating split-half reliability
 
 ## Calculating split scores
-To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participant and split, the splithalfr will randomly divide the dataset of each element of sets into two halves of similar size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participant and split, the splithalfr will randomly divide the dataset of each element of sets into two halves that differ at most by one in size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
 
 * twnr, which identifies participants
 * split, which counts splits
@@ -95,7 +95,7 @@ rapi_splits <- sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score, split_coun
 ```
 
 ## Estimating reliability averaged over splits
-Next, the output of sh_apply can be analyzed in order to assess reliability. By default, functions are provided that automatically calculate mean Spearman-Brown reliability (mean_sb_by_split) or Flanagan-Rulon reliability (mean_fr_by_split). If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability.
+Next, the output of sh_apply can be analyzed in order to estimate reliability. By default, functions are provided that automatically calculate mean Spearman-Brown (mean_sb_by_split) and Flanagan-Rulon (mean_fr_by_split) coefficients. If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability.
 ```
 # Flanagan-Rulon
 mean_fr_by_split(rapi_splits)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/splithalfr.R
 \name{sh_apply}
 \alias{sh_apply}
-\title{Apply a scoring method to each participant using full or split data set}
+\title{Apply a scoring algorithm to each participant using full or split data set}
 \usage{
 sh_apply(ds, participant_id, fn_sets, fn_score, split_count = 0,
   show_progress = TRUE)
@@ -18,11 +18,11 @@ sh_apply(ds, participant_id, fn_sets, fn_score, split_count = 0,
 
 \item{split_count}{(numeric) Default: 0. If 0, applies fn_score on full set. If > 0, applies fn_score to split sets, split_count times.}
 
-\item{show_progress}{(logical) Default: TRUE If TRUE, prints current split number each split.}
+\item{show_progress}{(logical) Default: TRUE. If TRUE, prints current split number each split.}
 }
 \value{
-(data frame) If split_count == 0, applies fn_score result on full data and returns a data frame with a column for participant_id and a column named "score" for fn_score applied to the full data of a participant. If split_count > 0, applies fn_score on full data and returns data frame with a column for participant_id, a column "split" that counts splits, and "score_1" and "score_2" for fn_score applied to each split.
+(data frame) If split_count == 0, returns a data frame with a column for participant_id and a column named "score" for fn_score applied to the full data of each participant. If split_count > 0, it splits each element returned by fn_sets into two halves that differ at most by one in size, applies fn_score on split data, and returns a data frame with a column for participant_id, a column "split" that counts splits, and "score_1" and "score_2" with the score of each split.
 }
 \description{
-Apply a scoring method to each participant using full or split data set
+Apply a scoring algorithm to each participant using full or split data set
 }
