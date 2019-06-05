@@ -2,7 +2,7 @@
 Calculates scores and and estimates bootstrapped split-half reliabilities for reaction time (RT) tasks and questionnaires. The splithalfr can be extended with custom scoring algorithms for user-provided datasets.
 
 ## Included Vignettes
-The splithalfr vignettes demonstrate how to write a custom scoring algorithm based on included example datasets:
+The splithalfr vignettes demonstrate how to write a custom scoring algorithm based on included example scoring algorithms and datasets:
 * `vignette("rapi_sum")` Sum-score for data of the 23-item version of the Rutgers Alcohol Problem Index ([White & Labouvie, 1989](https://research.alcoholstudies.rutgers.edu/rapi))
 * `vignette("vpt_diff_of_means")` Difference of mean RTs for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data ([Mogg & Bradley, 1999](https://doi.org/10.1080/026999399379050))
 * `vignette("aat_double_diff_of_medians")` Double difference of medians for correct responses on Approach Avoidance Task data ([Heuer, Rinck, & Becker, 2007](http://doi.org/10.1016/j.brat.2007.08.010))
