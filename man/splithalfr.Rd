@@ -18,11 +18,21 @@ The splithalfr vignettes demonstrate how to write a custom scoring algorithm bas
   \item \code{vignette("aat_double_diff_of_medians")} Double difference of medians for correct responses on Approach Avoidance Task data (\href{http://doi.org/10.1016/j.brat.2007.08.010}{Heuer, Rinck, & Becker, 2007})
   \item \code{vignette("iat_dscore_ri")} Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial (\href{http://dx.doi.org/10.1037/0022-3514.85.2.197}{Greenwald, Nosek, & Banaji, 2003})
 }
-
-The R script included in each vignette is validated by comparing the splithalfr
-score for a single participant with the same score calculated via Excel. The materials for each test can be found in
-\href{https://github.com/tpronk/splithalfr/tree/master/tests}{the splithalfr GitHub repository}
-
-The splithalfr splitting algorithm has been validated via a set of simulations that are not included in this package. The R script 
-for these simulations can be found \href{https://github.com/tpronk/splithalfr_simulation}{here}.
 }
+\section{Validation of algorithms}{
+
+\itemize{
+  \item The R script included in each vignette has been validated by comparing the splithalfr score for a single participant with the same score calculated via Excel. The materials for each test can be found in \href{https://github.com/tpronk/splithalfr/tree/master/tests}{the splithalfr GitHub repository}.
+  \item The splithalfr splitting algorithm has been validated via a set of simulations that are not included in this package. The R script for these simulations can be found \href{https://github.com/tpronk/splithalfr_simulation}{here}.
+}
+}
+
+\section{Related packages}{
+
+These R packages offer bootstrapped split-half reliabities for specific scoring algorithms and are available via CRAN at 
+the time of this writing: 
+\href{https://cran.r-project.org/package=multicon}{multicon}, 
+\href{https://cran.r-project.org/package=psych}{psych}, and
+\href{https://cran.r-project.org/package=splithalf}{splithalf}.
+}
+

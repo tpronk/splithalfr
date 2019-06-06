@@ -1,9 +1,10 @@
 Package: splithalfr
 Title: Extensible Bootstrapped Split-Half Reliabilities
-Version: 1.0.9
+Version: 1.0.10
+Date: 2019-06-06
 Author: Thomas Pronk [aut, cre]
 Authors@R: person("Thomas", "Pronk", email = "pronkthomas@gmail.com", role = c("aut", "cre"))
-Description: Calculates scores and estimates bootstrapped split-half reliabilities for reaction time tasks and questionnaires. The splithalfr can be extended with custom scoring algorithms for user-provided datasets.
+Description: Calculates scores and estimates bootstrapped split-half reliabilities for reaction time tasks and questionnaires. The 'splithalfr' can be extended with custom scoring algorithms for user-provided datasets. For more information, see Parsons, Kruijt, & Fox (2018) <doi:10.31234/osf.io/6ka9z>.
 Depends: R (>= 3.6)
 License: GPL-3
 Encoding: UTF-8
@@ -18,3 +19,4 @@ Imports:
 	rlang (>= 0.3.4)
 RoxygenNote: 6.1.1.9000
 VignetteBuilder: knitr
+URL: https://thomaspronk.com, https://www.uva.nl/en/profile/p/r/t.pronk/t.pronk.html

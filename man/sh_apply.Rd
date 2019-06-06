@@ -26,3 +26,19 @@ sh_apply(ds, participant_id, fn_sets, fn_score, split_count = 0,
 \description{
 Apply a scoring algorithm to each participant using full or split data set
 }
+\examples{
+# N.B. This example uses R script from the vignette: "rapi_sum"
+data("ds_rapi", package = "splithalfr")
+rapi_fn_sets <- function (ds) {
+  return (list(
+    items = unlist(ds[paste("V", 1 : 23, sep = "")])
+  ))
+}
+rapi_fn_score <- function (sets) {
+  return (sum(sets$items))
+}
+# Calculate scores per participant on full data
+sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score)
+# Calculate split scores per participant ten times
+sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score, 10)
+}

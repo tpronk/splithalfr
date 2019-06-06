@@ -15,3 +15,17 @@ mean_sb_by_split(ds)
 \description{
 Spearman-Brown reliability coefficient averaged over each split. Can be applied to output of sh_apply
 }
+\examples{
+# N.B. This example uses R script from the vignette: "rapi_sum"
+data("ds_rapi", package = "splithalfr")
+rapi_fn_sets <- function (ds) {
+  return (list(
+    items = unlist(ds[paste("V", 1 : 23, sep = "")])
+  ))
+}
+rapi_fn_score <- function (sets) {
+  return (sum(sets$items))
+}
+ds_splits = sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score, 10)
+mean_sb_by_split(ds_splits)
+}

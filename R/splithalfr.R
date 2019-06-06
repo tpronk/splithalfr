@@ -12,12 +12,18 @@
 #'   \item \code{vignette("iat_dscore_ri")} Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial (\href{http://dx.doi.org/10.1037/0022-3514.85.2.197}{Greenwald, Nosek, & Banaji, 2003})
 #' }
 #' 
-#' The R script included in each vignette is validated by comparing the splithalfr
-#' score for a single participant with the same score calculated via Excel. The materials for each test can be found in
-#' \href{https://github.com/tpronk/splithalfr/tree/master/tests}{the splithalfr GitHub repository}
+#' @section Validation of algorithms:
+#' \itemize{
+#'   \item The R script included in each vignette has been validated by comparing the splithalfr score for a single participant with the same score calculated via Excel. The materials for each test can be found in \href{https://github.com/tpronk/splithalfr/tree/master/tests}{the splithalfr GitHub repository}.
+#'   \item The splithalfr splitting algorithm has been validated via a set of simulations that are not included in this package. The R script for these simulations can be found \href{https://github.com/tpronk/splithalfr_simulation}{here}.
+#' }
 #' 
-#' The splithalfr splitting algorithm has been validated via a set of simulations that are not included in this package. The R script 
-#' for these simulations can be found \href{https://github.com/tpronk/splithalfr_simulation}{here}.
+#' @section Related packages:
+#' These R packages offer bootstrapped split-half reliabities for specific scoring algorithms and are available via CRAN at 
+#' the time of this writing: 
+#' \href{https://cran.r-project.org/package=multicon}{multicon}, 
+#' \href{https://cran.r-project.org/package=psych}{psych}, and
+#' \href{https://cran.r-project.org/package=splithalf}{splithalf}.
 #'
 #' @importFrom dplyr %>% group_by group_modify summarize
 #' @importFrom stats cor sd
@@ -85,6 +91,21 @@ split_score <- function (
 #' @param split_count (numeric) Default: 0. If 0, applies fn_score on full set. If > 0, applies fn_score to split sets, split_count times.
 #' @param show_progress (logical) Default: TRUE. If TRUE, prints current split number each split.
 #' @return (data frame) If split_count == 0, returns a data frame with a column for participant_id and a column named "score" for fn_score applied to the full data of each participant. If split_count > 0, it splits each element returned by fn_sets into two halves that differ at most by one in size, applies fn_score on split data, and returns a data frame with a column for participant_id, a column "split" that counts splits, and "score_1" and "score_2" with the score of each split.
+#' @examples
+#' # N.B. This example uses R script from the vignette: "rapi_sum"
+#' data("ds_rapi", package = "splithalfr")
+#' rapi_fn_sets <- function (ds) {
+#'   return (list(
+#'     items = unlist(ds[paste("V", 1 : 23, sep = "")])
+#'   ))
+#' }
+#' rapi_fn_score <- function (sets) {
+#'   return (sum(sets$items))
+#' }
+#' # Calculate scores per participant on full data
+#' sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score)
+#' # Calculate split scores per participant ten times
+#' sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score, 10)
 sh_apply <- function (
   ds,
   participant_id,
@@ -184,6 +205,19 @@ mean_rel_by_split <- function (ds, fn_rel) {
 #' @export
 #' @param ds (data frame) a data frame with columns "split", "score_1", and "score_2"
 #' @return (numeric) mean Flanagan-Rulon coefficient
+#' @examples
+#' # N.B. This example uses R script from the vignette: "rapi_sum"
+#' data("ds_rapi", package = "splithalfr")
+#' rapi_fn_sets <- function (ds) {
+#'   return (list(
+#'     items = unlist(ds[paste("V", 1 : 23, sep = "")])
+#'   ))
+#' }
+#' rapi_fn_score <- function (sets) {
+#'   return (sum(sets$items))
+#' }
+#' ds_splits = sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score, 10)
+#' mean_fr_by_split(ds_splits)
 mean_fr_by_split <- function (ds) {
   return (mean_rel_by_split(ds, flanagan_rulon))
 }
@@ -193,7 +227,19 @@ mean_fr_by_split <- function (ds) {
 #' @export
 #' @param ds (data frame) a data frame with columns "split", "score_1", and "score_2"
 #' @return (numeric) mean Spearman-Brown coefficient
+#' @examples
+#' # N.B. This example uses R script from the vignette: "rapi_sum"
+#' data("ds_rapi", package = "splithalfr")
+#' rapi_fn_sets <- function (ds) {
+#'   return (list(
+#'     items = unlist(ds[paste("V", 1 : 23, sep = "")])
+#'   ))
+#' }
+#' rapi_fn_score <- function (sets) {
+#'   return (sum(sets$items))
+#' }
+#' ds_splits = sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score, 10)
+#' mean_sb_by_split(ds_splits)
 mean_sb_by_split <- function (ds) {
   return (mean_rel_by_split(ds, spearman_brown))
 }
-
