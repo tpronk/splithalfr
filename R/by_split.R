@@ -95,8 +95,6 @@
 #' )
 #' # Mean flanagan-rulon coefficient across splits
 #' fr <- mean(split_coefs(split_scores, flanagan_rulon))
-#' # Confidence interval
-#' fr_ci <- split_ci(split_scores, flanagan_rulon)
 #' @export
 by_split <- function (
   data,

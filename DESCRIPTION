@@ -4,7 +4,7 @@ Version: 2.0.12
 Date: 2020-07-30
 Author: Thomas Pronk [aut, cre]
 Authors@R: person("Thomas", "Pronk", email = "pronkthomas@gmail.com", role = c("aut", "cre"))
-Description: Estimates split-half reliabilities of cognitive task and questionnaire scores. The 'splithalfr' supports user-provided scoring algorithms, split stratifications, and reliability coefficients. It provides four ways of splitting data and the option of sub-sampling data.
+Description: Estimates split-half reliabilities for scoring algorithms of reaction time (RT) tasks and questionnaires. The 'splithalfr' supports user-provided scoring algorithms. It provides four splitting techniques, split stratification, a number of reliability coefficients, and the option to sub-sample data.
 Depends: R (>= 3.6.0)
 License: GPL-3
 Encoding: UTF-8
