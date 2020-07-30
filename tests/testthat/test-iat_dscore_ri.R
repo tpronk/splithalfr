@@ -3,91 +3,129 @@ test_that("iat_dscore_ri", {
   # continue to the next trial
   library(splithalfr)
   library(dplyr)
-  
-  # Example IAT data (in JASMIN2 format)
+
+  # Load data
   data("ds_iat", package = "splithalfr")
   
   # ds_iat is data.frame of correct row count?
   expect_is(ds_iat, "data.frame")
-  expect_equal(nrow(ds_iat), 3568)  
+  expect_equal(nrow(ds_iat), 9696)  
   
-  # Preprocess; set timeout respones tot NA
-  ds_iat[ds_iat$response == 3, ]$rt <- 4000
+  # Drop participants whose RTs for over 10% of reponses are below 300 ms
+  ds_summary <- ds_iat %>%
+    dplyr::group_by(participation_id) %>%
+    dplyr::summarize(
+      too_fast = sum(rt < 300) / dplyr::n() > 0.1,
+    )
+  ds_iat <- ds_iat[!(
+    ds_iat$participation_id %in% ds_summary[ds_summary$too_fast, ]$participation_id
+  ), ]
   
-  # Preproces; delete any attempts with RTs > 10,000 ms
-  ds_iat <- subset(ds_iat, rt <= 10000)
+  # Delete any attempts with RT > 10,000 ms
+  ds_iat <- ds_iat[ds_iat$rt <= 10000, ]
   
-  # Preprocess; for each participant, block, and trial, sum RTs. Also keep block_type.
+  # 31 participants left?
+  expect_equal(length(unique(ds_iat$participation_id)), 31)
+  
+  
+  # Only combination blocks
+  ds_iat <- ds_iat[
+    ds_iat$block_type %in% 
+      c("tar1att1_1", "tar1att2_1", "tar1att1_2", "tar1att2_2"),
+    ]    
+  
+  # Sum RTs of attempts per trial
   ds_iat <- ds_iat %>%
-    dplyr::group_by(UserID, block, trial) %>%
+    dplyr::group_by(participation_id, block, trial) %>%
     summarise(
       block_type = first(block_type),
+      cat = first(cat),
       rt = sum(rt)
+    )    
+  
+  # score function
+  fn_score <- function(ds) {
+    fn_block <- function(ds_tar1att1, ds_tar1att2) {
+      m_tar1att1 <- mean(ds_tar1att1$rt)
+      m_tar1att2 <- mean(ds_tar1att2$rt)
+      inclusive_sd <- sd(c(ds_tar1att1$rt, ds_tar1att2$rt))
+      return ((m_tar1att2 - m_tar1att1) / inclusive_sd)
+    }      
+    d1 <- fn_block(
+      ds[ds$block_type == "tar1att1_1", ],
+      ds[ds$block_type == "tar1att2_1", ]
     )
-  
-  # ds_iat is data.frame of correct row count?
-  expect_is(ds_iat, "data.frame")
-  expect_equal(nrow(ds_iat), 3344)  
-  
-  # Sets function
-  iat_fn_sets <- function (ds) {
-    return (list(
-      tar1att1_1 = subset(ds, block_type == "tar1att1_1"),
-      tar1att1_2 = subset(ds, block_type == "tar1att1_2"),
-      tar1att2_1 = subset(ds, block_type == "tar1att2_1"),
-      tar1att2_2 = subset(ds, block_type == "tar1att2_2")
-    ))
-  }
-  
-  # Block score and splithalfr score functions
-  iat_fn_block <- function(ds_tar1att1, ds_tar1att2) {
-    m_tar1att1 <- mean(ds_tar1att1$rt)
-    m_tar1att2 <- mean(ds_tar1att2$rt)
-    inclusive_sd <- sd(c(ds_tar1att1$rt, ds_tar1att2$rt))
-    return ((m_tar1att2 - m_tar1att1) / inclusive_sd)
-  }
-  
-  iat_fn_score = function(sets) {
-    d1 <- iat_fn_block(sets$tar1att1_1, sets$tar1att2_1)
-    d2 <- iat_fn_block(sets$tar1att1_2, sets$tar1att2_2)
+    d2 <- fn_block(
+      ds[ds$block_type == "tar1att1_2", ],
+      ds[ds$block_type == "tar1att2_2", ]
+    )
     return (mean(c(d1, d2)))
   }
   
-  # Calculate scores
-  iat_scores <- sh_apply(
+  scores <- by(
     ds_iat,
-    "UserID",
-    iat_fn_sets,
-    iat_fn_score,
-    split_count = 0
+    ds_iat$participation_id,
+    fn_score
   )
+  scores <- data.frame(
+    UserID = names(scores),
+    score = as.vector(scores)
+  )  
   
-  # aat_scores is data.frame of correct row count?
-  expect_is(iat_scores, "data.frame")
-  expect_equal(nrow(iat_scores), 19)
+  # scores is data.frame of correct row count?
+  expect_is(scores, "data.frame")
+  expect_equal(nrow(scores), 31)
   
   # Check with manually calculated score
   expect_true(
-    abs(subset(iat_scores, UserID == 1)$score - 0.407603898) < .000001,
+    abs(subset(scores, UserID == 5)$score - 0.93944688) < .000001,
     "score of UserID 1 did not match with score calculated manually"
   )  
   
-  # Calculate two split-half scores
-  iat_splits <- sh_apply(
+  # Apply odd-even split
+  split_scores <- by_split(
     ds_iat,
-    "UserID",
-    iat_fn_sets,
-    iat_fn_score,
-    split_count = 2
+    ds_iat$participation_id,
+    fn_score,
+    method = "odd_even",
+    replications = 1,
+    ncores = 1
   )
   
-  # iat_splits is data.frame of correct row count?
-  expect_is(iat_splits, "data.frame")
-  expect_equal(nrow(iat_splits), 38)
+  # split_scores is data.frame of correct row count?
+  expect_is(split_scores, "data.frame")
+  expect_equal(nrow(split_scores), 31)
   
-  # Calculate mean of spearman-brown reliabilities of each split
-  reliability <- mean_sb_by_split(iat_splits)
-  
-  # reliability is a number?
-  expect_is(reliability, "numeric")
+  # Calculate reliablity coefficients
+  expect_is(
+    split_coefs(split_scores, spearman_brown),
+    "numeric"
+  )
+  expect_is(
+    split_coefs(split_scores, flanagan_rulon),
+    "numeric"
+  )
+  expect_is(
+    split_coefs(split_scores, angoff_feldt),
+    "numeric"
+  )
+  expect_is(
+    split_coefs(
+      split_scores, 
+      short_icc, 
+      type = "ICC1", 
+      lmer = FALSE
+    ),
+    "numeric"
+  )
+  expect_is(
+    split_coefs(
+      split_scores, 
+      spearman_brown, 
+      short_icc, 
+      type = "ICC1", 
+      lmer = FALSE
+    ),
+    "numeric"
+  )
 })

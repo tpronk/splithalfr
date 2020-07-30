@@ -4,26 +4,23 @@
 #' (\href{https://dx.doi.org/10.1037/0022-3514.74.6.1464}{Greenwald, McGhee, & Schwartz, 1998}),
 #' except that target and attribute trials did not alternate.  Upon a correct response, the next trial started.
 #' Upon an incorrect response, the current trial was repeated. The response to each trial was logged.
-#' This particular dataset is from a Drinker Identity IAT
-#' (\href{https://dx.doi.org/10.1037/a0027640}{Lindgren et al., 2013})
-#' that was used in a cross-cultural study. Drinker was target 1, non-drinker was target 2, me was attribute 1, and not-me was attribute 2.
-#' The dataset contains one row per trial.
-#' This dataset was graciously provided by \href{https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en}{Helle Larsen}.
-#'
+#' This particular dataset is from a Ethnicity-Valence IAT, which was administered (and described in detail) in 
+#' \href{https://doi.org/10.1016/j.tate.2019.102887}{Abacioglu and colleagues (2019)}. 
+#' This dataset was graciously provided by \href{https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html}{Fadie Hanna} and \href{https://www.researchgate.net/profile/Marjolein_Zee}{Marjolein Zee}.
+#' 
 #' Overview of columns:
-#'
 #' \itemize{
-#'   \item UserID. Identifies participants
+#'   \item participation_id Identifies participants
 #'   \item t1_left. If TRUE, the first combination block had target 1 on the left (and target 2 on the right)
 #'   \item a1_left. If TRUE, the first combination block had attribute 1 on the left (and attribute 2 on the right)
+#'   \item block_type. Type of block
+#'   \item block. Counts blocks, starting at zero
+#'   \item trial. Counts trials in blocks, starting at zero
+#'   \item attempt. Counts attempts (responses) in trials, starting at zero
 #'   \item cat. Category that stimulus belonged to
 #'   \item stim. Stimulus
 #'   \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid key
 #'   \item rt. Response time in milliseconds. Note that some response times may exceed the timeout window due to clock errors on the computer that the IAT was administered
-#'   \item block. Counts blocks, starting at zero
-#'   \item trial. Counts trials in blocks, starting at zero
-#'   \item attempt. Counts attempts (responses) in trials, starting at zero
-#'   \item block_type. Type of block
 #' }
 #' The variable block_type can have these values:
 #' \itemize{
@@ -50,7 +47,8 @@
 #' \href{https://doi.org/10.1111/acer.12853}{(Pronk, Deursen, Beraha, Larsen, & Wiers, 2015)}.
 #' The dataset contains one row per trial.
 #' This dataset was graciously provided by \href{https://www.researchgate.net/profile/Marilisa_Boffo}{Marilisa Boffo}.
-#'
+#' 
+#' Overview of columns:
 #' \itemize{
 #'   \item UserID. Identifies participants
 #'   \item patt. Probe-at-test. If "yes", the probe was positioned at the test stimulus. If "no", the probe was positioned at the control stimulus.
@@ -59,7 +57,7 @@
 #'   \item keep. If "yes" the probe was superimposed on the stimuli. If "no" the probe replaced the stimuli.
 #'   \item pdir. Probe direction. Values: "up" or "down"
 #'   \item stim. Stimulus
-#'   \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 5000 ms), 4 = invalid key
+#'   \item response. Response; 1 = correct, 2 = incorrect, 3 and NA = timeout (no response in 5000 ms), 4 = invalid key
 #'   \item rt. Response time in milliseconds
 #'   \item block. Counts blocks, starting at zero
 #'   \item trial. Counts trials in blocks, starting at zero
@@ -69,38 +67,37 @@
 
 #' Example Approach Avoidance Task (AAT) Measurement Data in JASMIN2 Format
 #'
-#' The JASMIN2 AAT was an irrelevant feature task, in which participants were instructed to
-#' approach/avoid left/right rotated stimuli. This particular AAT presented stimuli from a "test"
-#' category, which were math-related pictures, and from a "control" category, which were pictures unrelated
-#' to math. It registered approach responses by participants pressing (and holding) the arrow down key,
+#' The JASMIN1 AAT was an irrelevant feature task, in which participants were instructed to
+#' approach/avoid left/right rotated stimuli. This particular AAT was administered (and described in detail) in 
+#' \href{https://doi.org/10.1111/add.14071}{Boffo et al., 2018}. Participants were presented stimuli from a "test"
+#' category, which were gambling-related pictures, and from a "control" category, which were pictures unrelated
+#' to gambling. It registered approach responses by participants pressing (and holding) the arrow down key,
 #' while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
-#' out, until it disappeared from the screen. The first response to a stimulus was logged, as well as the final
-#' response, as defined by the stimulus completely zooming in or out. Upon a correct final response
-#' the next trial started and upon an incorrect final response the current trial was repeated. The first and final
-#' response to each trial was logged. The dataset contains one row per trial.
+#' out, until it disappeared from the screen. The first response to a stimulus was logged. 
+#' The dataset contains one row per trial.
 #' This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
-#'
+#' 
+#' Overview of columns:
 #' \itemize{
 #'   \item UserID. Identifies participants
-#'   \item approach_left. If TRUE, participants were instructed to approach left rotated stimuli. If FALSE, participants were instructed to approach right rotated stimuli.
-#'   \item trial_type. Values: "approach" or "avoid"
-#'   \item cat. Stimulus category: practice, test, or control
-#'   \item stim. Stimulus
-#'   \item response. Initial response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid key
-#'   \item rt. Response time in milliseconds
-#'   \item sust. Was approach or avoid response sustained until the stimulus was completely zoomed in or out?
-#'   \item final_response. Final response; the response that ended the current trial. Possible values are the same as for response
+#'   \item approach_tilt. If "left", participants were instructed to approach left rotated stimuli. If "right", participants were instructed to approach right rotated stimuli.
+#'   \item block_type. Type of block: "practice" for practice trials with neutral stimuli, "assess" for assessment trials with salient stimuli
 #'   \item block. Counts blocks, starting at zero
 #'   \item trial. Counts trials in blocks, starting at zero
-#'   \item attempt. Counts attempts (responses) in trials, starting at zero
-#'   \item block_type. Type of block: "assess1" and "assess2" for assessment trials with salient stimuli
+#'   \item appr. If "yes", this trial was an approach trial. If "no", this trial was an avoid trial.
+#'   \item tilt. Whether the stimulus was rotated to the "left" or to the "right"
+#'   \item cat. Stimulus category: "practice", "test", or "control"
+#'   \item stim. Stimulus ID
+#'   \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid key
+#'   \item rt. Response time in milliseconds
+#'   \item sust. Was approach or avoid response sustained until the stimulus was completely zoomed in or out?
 #' }
 "ds_aat"
 
 #' Example 23-item Rutgers Alcohol Problem Inventory (RAPI) data
 #'
 #' The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
-#' problems within the last year (\href{https://research.alcoholstudies.rutgers.edu/rapi}{White & Labouvie, 1989}).
+#' problems within the last year (\href{http://www.emcdda.europa.eu/html.cfm/index4200EN.html}{White & Labouvie, 1989}).
 #' The dataset contains one row per participant.
 #' 
 #' The dataset contains the following columns:
@@ -118,5 +115,45 @@
 #' }
 "ds_rapi"
 
+#' Example Go/No Go data
+#'
+#' The Go/No Go is a task in which participants respond to one set of stimuli, but withhold a response
+#' to another set of stimuli. This particular dataset is from the first session of a study that is 
+#' described in detail in \href{https://doi.org/10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
+#' It was graciously provided by \href{https://www.researchgate.net/profile/Craig_Hedge}{Craig Hedge} and can
+#' be obtained from \href{https://osf.io/cwzds}{https://osf.io/cwzds}.
+#' 
+#' Overview of columns:
+#'
+#' \itemize{
+#'   \item block. Block number
+#'   \item trial. Trial number
+#'   \item stim. Stimuli set used in that block
+#'   \item condition. 0 = go, 2 = no go
+#'   \item response. Correct (1) or incorrect (0)
+#'   \item rt. Reaction time (seconds)
+#'   \item participant. Participant ID
+#' }
+"ds_gng"
 
-
+#' Example Stop Signal Task data
+#'
+#' The Stop Signal Task is a task in which participants responded whether a stimulus was a square or a circle.
+#' On 25% of trials the participant heard a tone that indicated that the participant should withhold their response.
+#' This particular dataset is from the first session of a study that is 
+#' described in detail in \href{https://doi.org/10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
+#' It was graciously provided by \href{https://www.researchgate.net/profile/Craig_Hedge}{Craig Hedge} and can
+#' be obtained from \href{https://osf.io/cwzds}{https://osf.io/cwzds}.
+#' 
+#' Overview of columns:
+#'
+#' \itemize{
+#'   \item block. Block number
+#'   \item trial. Trial number
+#'   \item ssd. Stop signal delay
+#'   \item condition. 0 = go, 1 = stop
+#'   \item response. Correct (1) or incorrect (0)
+#'   \item rt. Reaction time (milliseconds)
+#'   \item participant. Participant ID
+#' }
+"ds_sst"

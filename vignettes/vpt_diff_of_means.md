@@ -7,14 +7,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
-```{r setup}
+
+
+```r
 library(splithalfr)
 ```
 This vignette describes a scoring method similar to [Mogg and Bradley (1999)](https://doi.org/10.1080/026999399379050);

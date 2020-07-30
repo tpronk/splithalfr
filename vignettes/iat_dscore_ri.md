@@ -7,16 +7,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  comment = "#>"
-)
-```
 
-```{r setup, message = FALSE, warning = FALSE}
+
+
+```r
 library(splithalfr)
 library(dplyr)
 ```

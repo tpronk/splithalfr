@@ -7,14 +7,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
-```{r setup}
+
+
+```r
 library(splithalfr)
 ```
 This vignette describes a scoring method similar to [Heuer, Rinck, and Becker (2007)](http://doi.org/10.1016/j.brat.2007.08.010); double difference of median reaction times (RTs) for correct responses on Approach Avoidance Task data. It is a subtraction comparing approach bias towards test stimuli relative to approach bias towards control stimuli (avoid_test - approach_test) - (avoid_control - approach_control).

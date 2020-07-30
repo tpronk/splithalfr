@@ -7,18 +7,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
-```{r setup}
+
+
+```r
 library(splithalfr)
 ```
 This vignette describes a sum score of answers on questions from the 23-item Rutgers Alcohol Problem Inventory (RAPI)
-([White & Labouvie, 1989](http://www.emcdda.europa.eu/html.cfm/index4200EN.html));
+([White & Labouvie, 1989](https://research.alcoholstudies.rutgers.edu/rapi));
 
 <br />
 
@@ -86,7 +82,7 @@ data.frame(
 # Estimating split-half reliability
 
 ## Calculating split scores
-To calculate split-half scores for each participant, use the function `by_split`. The first three arguments of this function are the same as for `by`. An additional set of arguments allow you to specify how to split the data and how often. In this vignette we will calculate scores of 1000 bootstrapped splits. Since each participant received the same unique sequence of items, we enabled `match_participants`. See the vignette on splitting methods for more ways to split the data.
+To calculate split-half scores for each participant, use the function `by_split`. The first three arguments of this function are the same as for `by`. An additional set of arguments allow you to specify how to split the data and how often. In this vignette we will calculate scores of 1000 bootstrapped splits. Since each participant received the same unique sequence of items, we enabled `match_participants`. Note that `by_split` offers a large number of additional splitting options, such as first-second half, odd-even, split-full, and stratified splitting.
 
 The `by_split` function returns a data frame with the following columns:
 
@@ -107,15 +103,20 @@ split_scores <- by_split(
 ```
 
 ## Calculating reliability coefficients
-Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple `mean`. A bias-corrected and accelerated bootstrap confidence interval can be calculated via `split_ci`.
+Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple `mean`. A bias-corrected and accelerated bootstrap confidence interval can be calculated via `split_ci`. Below we illustrate the above with the Flanagan-rulon coefficient.
 
 ```
-# Spearman-Brown adjusted Pearson correlations per replication
-coefs <- split_coefs(split_scores, spearman_brown)
+# Flanagan-Rulon coefficients per split
+frs <- split_coefs(split_scores, flanagan_rulon)
 # Distribution of coefficients
-hist(coefs)
+hist(frs)
 # Mean of coefficients
-mean(coefs)
+mean(frs)
 # Confidence interval of coefficients
-split_ci(split_scores, coefs)
+split_ci(split_scores, flanagan_rulon)
 ```
+
+
+
+
+

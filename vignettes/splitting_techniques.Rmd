@@ -1,0 +1,76 @@
+---
+title: "Splitting Methods"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{splitting_techniques}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(splithalfr)
+```
+This vignette shows examples of six methods for splitting data.
+Each method can be used by passing the arguments shown in each example to `by_split`, 
+but for illustration we'll use the lower-level functions `stratum_split` and `strata_split`
+
+# Example data
+We'll use this example dataset of eight trials, each of which has a condition and rt variable.
+```
+data.frame(
+  condition = rep(c("a", "b"), each = 4)
+  rt = 100 * 1 : 8
+)
+```
+
+# First-second splitting
+Odd-even splitting assigns trials of the first half of rows to one part and trials with the second half of rows to the other ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). For this splitting technique, set `method` to `first_second`.
+```
+stratum_split(ds, method = "first_second")
+```
+
+# Odd-even splitting
+Odd-even splitting assigns trials with an odd row number to one part and trials with an even row number to the other ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)).For this splitting technique, set `method` to `odd_even`.
+```
+stratum_split(ds, method = "odd_even")
+```
+
+# Permutated splitting
+Permutation splitting is also known as bootstrapped splitting ([Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695)) and random sample of split halves ([Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). It assigns trials to each part via random sampling without replacement. This splitting technique is the default, but you can make it explicit by setting `method` to `random`.
+```
+stratum_split(ds, method = "random")
+```
+
+# Monte Carlo splitting
+Monte Carlo splitting assigns trials to each part by sampling with replacement ([Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). For constructing parts that of any length, use the `split_p` argument and set `replace` to `TRUE`. The example below constructs two parts of the same length as the original dataset by setting `split_p` to 1.
+```
+stratum_split(ds, method = "random", replace = TRUE, split_p = 1)
+```
+
+# Stratified splitting
+If a split is stratified by a variable, then trials are separately assigned to each part for each level of that variable ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3)). For example, if splits are stratified by `ds$condition`, the trials with condition a and b are separately split. Below are illustrations of first-second, odd-even, permutated, and bootstrapped splitting, stratified by condition.
+```
+ds_stratified <- stratify(ds, ds$condition)
+strata_split(ds_stratified, method = "odd_even")
+strata_split(ds_stratified, method = "first_second")
+strata_split(ds_stratified, method = "random")
+strata_split(ds_stratified, method = "random", replace = TRUE, split_p = 1)
+```
+
+# Sub-sampled splitting
+In a sub-sampled split, part of the trials is randomly sampled without replacement and then split. Sub-sampling only works well with splitting methods that uses random sampling (permutated and Monte Carlo). Since the sub-sampling procedure already randomizes the trials selected for splitting, Splitting methods that assign trials to part based on their row number, such as first-second and odd-even, should give results similar to permutation splitting. Any stratifications are applied both to the sub-sampling and splitting.
+
+```
+stratum_split(ds, method = "random", subsample_p = 0.5)
+stratum_split(ds, method = "random", subsample_p = 0.5, replace = TRUE, split_p = 1)
+strata_split(ds_stratified, method = "random", subsample_p = 0.5)
+strata_split(ds_stratified, method = "random", subsample_p = 0.5, replace = TRUE, split_p = 1)
+```
+

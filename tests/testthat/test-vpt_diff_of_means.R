@@ -12,60 +12,77 @@ test_that("vpt_diff_of_means", {
   # Preprocessing; only select assessment blocks
   ds_vpt <- subset(ds_vpt, block_type == "assess")
   
-  # Function for getting the sets used in each comparison
-  vpt_fn_sets <- function (ds) {
-    return (list(
-      # Probe-at-test
-      patt_yes = subset(ds, patt == "yes"),
-      # Probe-at-control
-      patt_no  = subset(ds, patt == "no")
-    ))
+  fn_score <- function (ds) {
+    ds_keep <- ds[ds$response == 1 & ds$rt >= 200 & ds$rt <= 520, ]
+    rt_yes <- mean(ds_keep[ds_keep$patt == "yes", ]$rt)
+    rt_no <- mean(ds_keep[ds_keep$patt == "no", ]$rt)
+    return (rt_no - rt_yes)
   }
   
-  # Function for calculating the score: mean RT of patt == no minus mean RT of patt = no,
-  # for correct responses, after removing RTs below 200 ms and above 520 ms as outliers
-  vpt_fn_score <- function (sets) {
-    rt_yes <- subset(sets$patt_yes, response == 1)$rt
-    rt_yes <- rt_yes[rt_yes >= 200 & rt_yes <= 520]
-    rt_no <- subset(sets$patt_no, response == 1)$rt
-    rt_no <- rt_no[rt_no >= 200 & rt_no <= 520]
-    return (mean(rt_no) - mean(rt_yes))
-  }
-  
-  # Calculate scores per participant
-  vpt_scores <- sh_apply(
+  scores <- by(
     ds_vpt,
-    "UserID",
-    vpt_fn_sets,
-    vpt_fn_score
+    ds_vpt$UserID,
+    fn_score
+  )
+  scores <- data.frame(
+    UserID = names(scores),
+    score = as.vector(scores)
   )
   
-  # aat_scores is data.frame of correct row count?
-  expect_is(vpt_scores, "data.frame")
-  expect_equal(nrow(vpt_scores), 61)
+  # scores is data.frame of correct row count?
+  expect_is(scores, "data.frame")
+  expect_equal(nrow(scores), 61)
 
   # Check with manually calculated score
   expect_true(
-    abs(subset(vpt_scores, UserID == 23)$score - 7.098501382) < 0.00001,
+    abs(scores[scores$UserID == 23, ]$score - 7.098501382) < 0.00001,
     "score of UserID 23 did not match with score calculated manually"
   )  
   
-  # Calculate two split-half scores
-  vpt_splits <- sh_apply(
+  # Apply odd-even split
+  split_scores <- by_split(
     ds_vpt,
-    "UserID",
-    vpt_fn_sets,
-    vpt_fn_score,
-    split_count = 2
+    ds_vpt$UserID,
+    fn_score,
+    method = "odd_even",
+    replications = 1,
+    ncores = 1
   )
   
-  # aat_splits is data.frame of correct row count?
-  expect_is(vpt_splits, "data.frame")
-  expect_equal(nrow(vpt_splits), 122)  
+  # split_scores is data.frame of correct row count?
+  expect_is(split_scores, "data.frame")
+  expect_equal(nrow(split_scores), 61)
   
-  # Calculate mean of spearman-brown reliabilities of each split
-  reliability <- suppressWarnings(mean_sb_by_split(vpt_splits))
-
-  # reliability is a number?
-  expect_is(reliability, "numeric")  
+  # Calculate reliablity coefficients
+  expect_is(
+    split_coefs(split_scores, spearman_brown),
+    "numeric"
+  )
+  expect_is(
+    split_coefs(split_scores, flanagan_rulon),
+    "numeric"
+  )
+  expect_is(
+    split_coefs(split_scores, angoff_feldt),
+    "numeric"
+  )
+  expect_is(
+    split_coefs(
+      split_scores, 
+      short_icc, 
+      type = "ICC1", 
+      lmer = FALSE
+    ),
+    "numeric"
+  )
+  expect_is(
+    split_coefs(
+      split_scores, 
+      spearman_brown, 
+      short_icc, 
+      type = "ICC1", 
+      lmer = FALSE
+    ),
+    "numeric"
+  )
 })
