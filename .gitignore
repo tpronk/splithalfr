@@ -5,3 +5,6 @@ man
 splithalfr.Rproj
 .Rhistory
 .Renviron
+vignettes/*.html
+vignettes/*.R
+vignettes/*.md
