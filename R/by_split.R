@@ -33,6 +33,8 @@
 #'   proportion of the length of the data per participant. If \code{split_p}
 #'   is larger than 1 and \code{careful} is FALSE, then parts are automatically
 #'   sampled with replacement
+#' @param subsample_n (numeric) Subsample a number of participants before
+#'   splitting.
 #' @param subsample_p (numeric) Subsample a proportion of \code{stratum} before
 #'   splitting.
 #' @param careful (boolean) If TRUE, stop with an error when called with
@@ -106,6 +108,7 @@ by_split <- function (
   replace = FALSE, 
   split_p = 0.5, 
   subsample_p = 1, 
+  subsample_n = NULL,
   careful = TRUE,
   match_participants = FALSE,    
   ncores = detectCores(),
@@ -122,6 +125,9 @@ by_split <- function (
   
   # IDs of each participant
   participant_ids = unique(participants)
+  if (!is.null(subsample_n)) {
+    participant_ids <- sample(participant_ids, subsample_n)
+  }
   
   # Create a list of lists, containing each participant and stratum
   if (verbose) {
@@ -272,7 +278,9 @@ by_split <- function (
   if (ncores > 1) {
     stopCluster(cl)
   }
-  cat("Wrapping up", fill = TRUE)
+  if (verbose) {
+    cat("Wrapping up", fill = TRUE)
+  }
   ds_result = bind_rows(ds_result)
   return (ds_result)
 }
