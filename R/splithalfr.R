@@ -13,13 +13,12 @@
 #'   \item \code{vignette("gng_dprime")} D-prime for data of a Go/No Go task (\href{https://doi.org/10.3758/BF03205476}{Miller, 1996})
 #' }
 #' 
-#' @section Splitting techniques:
-#' \code{vignette("splitting_techniques")} The splithalfr supports a variety of techniques for splitting your data.
-#' The vignette above illustrates five splitting methods you might encounter in cognitive task literature:
+#' @section Splitting methods:
+#' The splithalfr supports a variety of methods for splitting your data. We review and assess each  method in the compendium paper, currently in pre-print (\href{https://doi.org/10.31234/osf.io/ywste}{Pronk, Molenaar, Wiers, & Murre, 2020}). This vignette illustrates how to apply each splitting method via the splithalfr: \code{vignette("splitting_methods")}
 #' \itemize{
 #'   \item first-second and odd-even (\href{https://doi.org/10.3758/s13423-015-0968-3}{Green et al., 2016}; \href{https://doi.org/10.1016/S0169-7161(06)26004-8}{Webb, Shavelson, & Haertel, 1996}; \href{https://doi.org/10.1016/j.jesp.2012.03.001}{Williams & Kaufmann, 1996})
 #'   \item stratified ((\href{https://doi.org/10.3758/s13423-015-0968-3}{Green et al., 2016})
-#'   \item permutated/bootstrapped/random sample of split halves (\href{https://doi.org/10.1177/2515245919879695}{Parsons, Kruijt, & Fox, 2019}; \href{https://doi.org/10.1016/j.jesp.2012.03.001}{Williams & Kaufmann, 1996})
+#'   \item permutated/bootstrapped/random sample of split halves (\href{https://doi.org/10.1177/1073191119866257}{Kopp, Lange, & Steinke, 2021}, \href{https://doi.org/10.1177/2515245919879695}{Parsons, Kruijt, & Fox, 2019}; \href{https://doi.org/10.1016/j.jesp.2012.03.001}{Williams & Kaufmann, 1996})
 #'   \item Monte Carlo (\href{https://doi.org/10.1016/j.jesp.2012.03.001}{Williams & Kaufmann, 1996})
 #' }
 #' 

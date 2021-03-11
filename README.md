@@ -11,11 +11,11 @@ We've got six short vignettes to help you get started. You can open a vignette b
 * `vignette("sst_ssrti")` Stop-Signal Reaction Time integration method for data of a Stop Signal Task ([Logan, 1981](http://www.psy.vanderbilt.edu/faculty/logan/Logan(1981).pdf))
 * `vignette("gng_dprime")` D-prime for data of a Go/No Go task ([Miller, 1996](https://doi.org/10.3758/BF03205476))
 
-## Splitting techniques
-`vignette("splitting_techniques")` The splithalfr supports a variety of techniques for splitting your data. The vignette above illustrates five splitting methods you might encounter in cognitive task literature:
+## Splitting Methods
+The splithalfr supports a variety of methods for splitting your data. We review and assess each  method in the compendium paper, currently in pre-print ([Pronk, Molenaar, Wiers, & Murre, 2020](https://doi.org/10.31234/osf.io/ywste)). This vignette illustrates how to apply each splitting method via the splithalfr: `vignette("splitting_methods")` 
 * first-second and odd-even ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))
 * stratified ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3))
-* permutated/bootstrapped/random sample of split halves ([Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))
+* permutated/bootstrapped/random sample of split halves ([Kopp, Lange, & Steinke, 2021](https://doi.org/10.1177/1073191119866257), [Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))
 * Monte Carlo ([Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))
 
 ## Validation of split-half estimations
@@ -26,3 +26,8 @@ These R packages offer bootstrapped split-half reliabilities for specific scorin
 
 ## Acknowledgments:
 I would like to thank [Craig Hedge](https://www.researchgate.net/profile/Craig_Hedge), [Eva Schmitz](https://www.researchgate.net/profile/Eva_Schmitz4), [Fadie Hanna](https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html), [Helle Larsen](https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en), [Marilisa Boffo](https://www.researchgate.net/profile/Marilisa_Boffo), and [Marjolein Zee](https://www.researchgate.net/profile/Marjolein_Zee), for making datasets available for inclusion in the splithalfr. Additionally, I would like to thank [Craig Hedge](https://www.researchgate.net/profile/Craig_Hedge) and [Benedict Williams](http://www.swinburne.edu.au/health-arts-design/staff/profile/index.php?id=bwilliams) for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes.
+
+## Version History
+* **v2.1** Added option to subsample participants before splitting via `subsample_n` argument to `by_split`
+* **v2.0** Remodeled to look like R's native `split`
+* **v1.0** First stable release

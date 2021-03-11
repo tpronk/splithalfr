@@ -1,0 +1,119 @@
+---
+title: "Splitting Methods"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{splitting_methods}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(splithalfr)
+```
+This vignette demonstrates the methods of splitting data that are supported by the `splithalfr`. Each splitting method is illustrated by calling `by_split` with the right arguments, printing to the terminal what data is in each of the two parts produced by a split.
+
+
+# Example data
+We'll use this example dataset with eight trials of one participant, each trial having a condition and rt variable. 
+```
+ds <- data.frame(
+  participant = rep(1, 8),
+  condition = rep(c("a", "b"), each = 4),
+  rt = 100 * 1 : 8
+)
+```
+
+# First-second splitting
+First-second splitting assigns trials of the first half of rows to one part and trials of the second half of rows to the other ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). For this splitting method, set `method` to `first_second`.
+
+```
+dummy = by_split(
+  ds,
+  ds$participant,
+  method = "first_second",
+  function(ds) { print(ds); },
+  ncores = 1,
+  verbose = F
+)
+```
+
+# Odd-even splitting
+Odd-even splitting assigns trials with an odd row number to one part and trials with an even row number to the other ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). For this splitting method, set `method` to `odd_even`.
+```
+dummy = by_split(
+  ds,
+  ds$participant,
+  method = "odd_even",
+  function(ds) { print(ds); },
+  ncores = 1,
+  verbose = F
+)
+```
+
+# Permutated splitting
+Permutated splitting is also known as random splitting ([Kopp, Lange, & Steinke, 2021](https://doi.org/10.1177/1073191119866257)), bootstrapped splitting ([Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695)) and random sample of split halves ([Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). It assigns trials to each part via random sampling without replacement. This splitting method is the default, but you can make it explicit by setting `method` to `random`. In practice, random splits are averaged over many replications, but for illustration we're only printing one.
+```
+dummy = by_split(
+  ds,
+  ds$participant,
+  method = "random",
+  replications = 1,
+  function(ds) { print(ds); },
+  ncores = 1,
+  verbose = F
+)
+```
+
+# Monte Carlo splitting
+Monte Carlo splitting assigns trials to each part by sampling with replacement ([Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). For constructing parts that are of any length, use the `split_p` argument and set `replace` to `TRUE`. The example below constructs two parts of the same length as the original dataset by setting `split_p` to 1.
+```
+dummy = by_split(
+  ds,
+  ds$participant,
+  method = "random",
+  replace = TRUE,
+  split_p = 1,
+  replications = 1,
+  function(ds) { print(ds); },
+  ncores = 1,
+  verbose = F
+)
+```
+
+# Stratified splitting
+If a split is stratified by a variable, then trials are separately assigned to each part for each level of that variable ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3)). For example, if splits are stratified by `ds$condition`, the trials with condition a and b are split separately. Stratification can be used in combination with any of the methods above. For illustration we combine it with first-second splitting
+```
+dummy = by_split(
+  ds,
+  ds$participant,
+  method = "first_second",
+  stratification = ds$condition,
+  function(ds) { print(ds); },
+  ncores = 1,
+  verbose = F
+)
+```
+
+# Subsampled splitting
+In a subsampled split, a subset of the trials is randomly sampled without replacement and then split (see the supplementary materials of [Hedge, Powell, & Sumner, 2018](https://doi.org/10.3758/s13428-017-0935-1)). Sub-sampling only works well with splitting methods that uses random sampling (permutated and Monte Carlo). Since the sub-sampling procedure already randomizes the trials selected for splitting, splitting methods that assign trials to part based on their row number, such as first-second and odd-even, should give results that are similar to permutated splitting. Any stratifications are applied both to the sub-sampling and splitting.
+
+```
+dummy = by_split(
+  ds,
+  ds$participant,
+  method = "random",
+  stratification = ds$condition,
+  subsample_p = 0.5,
+  function(ds) { print(ds); },
+  ncores = 1,
+  verbose = F
+)
+```
+
