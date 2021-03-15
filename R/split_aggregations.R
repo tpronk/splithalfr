@@ -108,9 +108,9 @@ not_missing_casewise <- function (ds) {
 #' split_ci(ds_splits, cor)
 #' @section References:
 #'
-#'   Efron, B. (1987). Better bootstrap confidence intervals. \emph{Journal of the
-#'   American statistical Association}, 82(397), 171-185.
-#'   \doi{10.1080/01621459.1987.10478410}
+#'  Efron, B. (1987). Better bootstrap confidence intervals. \emph{Journal of the
+#'  American statistical Association}, 82(397), 171-185.
+#'  \doi{10.1080/01621459.1987.10478410}
 #'
 #'  Feldt, L. S., & Charter, R. A. (2006). Averaging internal consistency
 #'  reliability coefficients. \emph{Educational and Psychological Measurement},
