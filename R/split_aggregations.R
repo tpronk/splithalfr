@@ -20,8 +20,7 @@
 #'
 #'  Feldt, L. S., & Charter, R. A. (2006). Averaging internal consistency
 #'  reliability coefficients. \emph{Educational and Psychological Measurement},
-#'  66(2), 215-227.
-#'  \href{https://doi.org/10.1177/0013164404273947}{https://doi.org/10.1177/0013164404273947}
+#'  66(2), 215-227. \doi{10.1177/0013164404273947}
 #'
 #' @examples
 #' # Generate five splits with scores that are correlated 0.00, 0.25, 0.5, 0.75, and 1.00
@@ -111,12 +110,12 @@ not_missing_casewise <- function (ds) {
 #'
 #'   Efron, B. (1987). Better bootstrap confidence intervals. \emph{Journal of the
 #'   American statistical Association}, 82(397), 171-185.
-#'   \href{https://doi.org/10.1080/01621459.1987.10478410}{https://doi.org/10.1080/01621459.1987.10478410}
+#'   \doi{10.1080/01621459.1987.10478410}
 #'
 #'  Feldt, L. S., & Charter, R. A. (2006). Averaging internal consistency
 #'  reliability coefficients. \emph{Educational and Psychological Measurement},
 #'  66(2), 215-227.
-#'  \href{https://doi.org/10.1177/0013164404273947}{https://doi.org/10.1177/0013164404273947}
+#'  \doi{10.1177/0013164404273947}
 #' @family split aggregation functions
 #' @export
 split_ci <- function(ds, fn_coef, fn_average = function (values) { mean(values, na.rm = TRUE) }, replications = 1000, ...) {

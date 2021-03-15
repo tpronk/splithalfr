@@ -1,8 +1,7 @@
 #' Calculate Flanagon-Rulon coefficient
 #'
 #' Flanagon-Rulon reliability coefficient. Formula obtained from
-#' \href{https://link.springer.com/article/10.1007/s11634-015-0198-6}{(Warrens,
-#' 2015)}
+#' Warrens (2015) <\doi{10.1007/s11634-015-0198-6}>
 #'
 #' @param x (vector) a numeric vector
 #' @param y (vector) a numeric vector with compatible dimensions to x
@@ -21,10 +20,8 @@ flanagan_rulon <- function (x, y) {
 
 #' Calculate Spearman-brown coefficient
 #'
-#' Flanagon-Rulon reliability coefficient for doubling test length. Formula
-#' obtained from
-#' \href{https://link.springer.com/article/10.1007/s11634-015-0198-6}{(Warrens,
-#' 2015)}
+#' Spearman-Brown reliability coefficient for doubling test length. Formula
+#' obtained from Warrens (2015) <\doi{10.1007/s11634-015-0198-6}>
 #'
 #' @param x (vector) a numeric vector
 #' @param y (vector) a numeric vector with compatible dimensions to x
@@ -49,7 +46,7 @@ spearman_brown <- function (x, y, fn_cor = cor, ...) {
 #' Calculate Angoff-Feldt coefficient
 #'
 #' Angoff-Feldt reliability coefficient.
-#' Formula obtained from \href{https://link.springer.com/article/10.1007/s11634-015-0198-6}{(Warrens, 2015)}
+#' Formula obtained from Warrens (2015) <\doi{10.1007/s11634-015-0198-6}>
 #'
 #' @param x (vector) a numeric vector
 #' @param y (vector) a numeric vector with compatible dimensions to x
@@ -131,7 +128,7 @@ sdregi <- function (x, y) {
 #' divided by their shared standard deviation. Since the resulting difference 
 #' is absolute, the larger of the two means is always used as minuend and the
 #' smallest as subtrahend. Based on 
-#' \href{https://doi.org/10.1016/j.ygeno.2006.12.014}{Zhang (2012)}
+#' Zhang (2012) <\doi{10.1016/j.ygeno.2006.12.014}>
 #'
 #' @param x (vector) a numeric vector
 #' @param y (vector) a numeric vector with compatible dimensions to x

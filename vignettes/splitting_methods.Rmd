@@ -31,7 +31,7 @@ ds <- data.frame(
 ```
 
 # First-second splitting
-First-second splitting assigns trials of the first half of rows to one part and trials of the second half of rows to the other ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). For this splitting method, set `method` to `first_second`.
+First-second splitting assigns trials of the first half of rows to one part and trials of the second half of rows to the other ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 2012](https://doi.org/10.1016/j.jesp.2012.03.001)). For this splitting method, set `method` to `first_second`.
 
 ```
 dummy = by_split(
@@ -45,7 +45,7 @@ dummy = by_split(
 ```
 
 # Odd-even splitting
-Odd-even splitting assigns trials with an odd row number to one part and trials with an even row number to the other ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). For this splitting method, set `method` to `odd_even`.
+Odd-even splitting assigns trials with an odd row number to one part and trials with an even row number to the other ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 2012](https://doi.org/10.1016/j.jesp.2012.03.001)). For this splitting method, set `method` to `odd_even`.
 ```
 dummy = by_split(
   ds,
@@ -58,7 +58,7 @@ dummy = by_split(
 ```
 
 # Permutated splitting
-Permutated splitting is also known as random splitting ([Kopp, Lange, & Steinke, 2021](https://doi.org/10.1177/1073191119866257)), bootstrapped splitting ([Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695)) and random sample of split halves ([Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). It assigns trials to each part via random sampling without replacement. This splitting method is the default, but you can make it explicit by setting `method` to `random`. In practice, random splits are averaged over many replications, but for illustration we're only printing one.
+Permutated splitting is also known as random splitting ([Kopp, Lange, & Steinke, 2021](https://doi.org/10.1177/1073191119866257)), bootstrapped splitting ([Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695)) and random sample of split halves ([Williams & Kaufmann, 2012](https://doi.org/10.1016/j.jesp.2012.03.001)). It assigns trials to each part via random sampling without replacement. This splitting method is the default, but you can make it explicit by setting `method` to `random`. In practice, random splits are averaged over many replications, but for illustration we're only printing one.
 ```
 dummy = by_split(
   ds,
@@ -72,7 +72,7 @@ dummy = by_split(
 ```
 
 # Monte Carlo splitting
-Monte Carlo splitting assigns trials to each part by sampling with replacement ([Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001)). For constructing parts that are of any length, use the `split_p` argument and set `replace` to `TRUE`. The example below constructs two parts of the same length as the original dataset by setting `split_p` to 1.
+Monte Carlo splitting assigns trials to each part by sampling with replacement ([Williams & Kaufmann, 2012](https://doi.org/10.1016/j.jesp.2012.03.001)). For constructing parts that are of any length, use the `split_p` argument and set `replace` to `TRUE`. The example below constructs two parts of the same length as the original dataset by setting `split_p` to 1.
 ```
 dummy = by_split(
   ds,
