@@ -26,10 +26,3 @@ These R packages offer bootstrapped split-half reliabilities for specific scorin
 
 ## Acknowledgments:
 I would like to thank [Craig Hedge](https://www.researchgate.net/profile/Craig-Hedge), [Eva Schmitz](https://www.researchgate.net/profile/Eva-Schmitz), [Fadie Hanna](https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html), [Helle Larsen](https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en), [Marilisa Boffo](https://www.researchgate.net/profile/Marilisa-Boffo), and [Marjolein Zee](https://www.researchgate.net/profile/Marjolein-Zee-2), for making datasets available for inclusion in the splithalfr. Additionally, I would like to thank [Craig Hedge](https://www.researchgate.net/profile/Craig-Hedge) and [Benedict Williams](https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams) for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes.
-
-## Version History
-* **v2.1** 
-  * Added option to subsample participants before splitting via `subsample_n` argument to `by_split`.
-  * Updated terminology in documentation to match compendium paper.
-* **v2.0** Remodeled to look like R's native `split`
-* **v1.0** First stable release
