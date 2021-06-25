@@ -1,18 +1,18 @@
 # splithalfr: Split-Half Reliabilities
-Estimates split-half reliabilities for scoring algorithms of reaction time (RT) tasks and questionnaires. 
+Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires. 
 
 ## Getting started
 We've got six short vignettes to help you get started. You can open a vignette bij running the corresponding code snippets `vignette(...)` in the R console.
 
-* `vignette("rapi_sum")` Sum-score for data of the 23-item version of the Rutgers Alcohol Problem Index ([White & Labouvie, 1989](http://www.emcdda.europa.eu/html.cfm/index4200EN.html))
+* `vignette("rapi_sum")` Sum-score for data of the 23-item version of the Rutgers Alcohol Problem Index ([White & Labouvie, 1989](https://doi.org/10.15288/jsa.1989.50.30))
 * `vignette("vpt_diff_of_means")` Difference of mean RTs for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data ([Mogg & Bradley, 1999](https://doi.org/10.1080/026999399379050))
 * `vignette("aat_double_diff_of_medians")` Double difference of medians for correct responses on Approach Avoidance Task data ([Heuer, Rinck, & Becker, 2007](https://doi.org/10.1016/j.brat.2007.08.010))
-* `vignette("iat_dscore_ri")` Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial ([Greenwald, Nosek, & Banaji, 2003](https://doi.org/10.1037/0022-3514.85.2.197))
+* `vignette("iat_dscore_ri")` Improved d-score algorithm for data of an Implicit Association Task that requires a correct response in order to continue to the next trial ([Greenwald, Nosek, & Banaji, 2003](https://pubmed.ncbi.nlm.nih.gov/12916565/))
 * `vignette("sst_ssrti")` Stop-Signal Reaction Time integration method for data of a Stop Signal Task ([Logan, 1981](http://www.psy.vanderbilt.edu/faculty/logan/Logan(1981).pdf))
 * `vignette("gng_dprime")` D-prime for data of a Go/No Go task ([Miller, 1996](https://doi.org/10.3758/BF03205476))
 
 ## Splitting Methods
-The splithalfr supports a variety of methods for splitting your data. We review and assess each  method in the compendium paper, currently in pre-print ([Pronk, Molenaar, Wiers, & Murre, 2020](https://doi.org/10.31234/osf.io/ywste)). This vignette illustrates how to apply each splitting method via the splithalfr: `vignette("splitting_methods")` 
+The splithalfr supports a variety of methods for splitting your data. We review and assess each  method in the compendium paper ([Pronk et al., 2021](https://doi.org/10.3758/s13423-021-01948-3)). This vignette illustrates how to apply each splitting method via the splithalfr: `vignette("splitting_methods")` 
 * first-second and odd-even ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))
 * stratified ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3))
 * permutated/bootstrapped/random sample of split halves ([Kopp, Lange, & Steinke, 2021](https://doi.org/10.1177/1073191119866257), [Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))

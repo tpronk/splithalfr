@@ -1,7 +1,7 @@
 #' Example Implicit Association Task (IAT) Data in JASMIN2 Format
 #'
 #' The JASMIN2 IAT closely followed the original IAT procedure
-#' (\doi{10.1037/0022-3514.74.6.1464}{Greenwald, McGhee, & Schwartz, 1998}),
+#' (\href{https://pubmed.ncbi.nlm.nih.gov/9654756/}{Greenwald, McGhee, & Schwartz, 1998}),
 #' except that target and attribute trials did not alternate.  Upon a correct response, the next trial started.
 #' Upon an incorrect response, the current trial was repeated. The response to each trial was logged.
 #' This particular dataset is from a Ethnicity-Valence IAT, which was administered (and described in detail) in 
@@ -97,7 +97,7 @@
 #' Example 23-item Rutgers Alcohol Problem Inventory (RAPI) data
 #'
 #' The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
-#' problems within the last year (\href{http://www.emcdda.europa.eu/html.cfm/index4200EN.html}{White & Labouvie, 1989}).
+#' problems within the last year (\doi{https://doi.org/10.15288/jsa.1989.50.30}{White & Labouvie, 1989}).
 #' The dataset contains one row per participant.
 #' 
 #' The dataset contains the following columns:

@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(splithalfr)
 ```
-This vignette demonstrates the methods of splitting data that are supported by the `splithalfr`. Each splitting method is illustrated by calling `by_split` with the right arguments, printing to the terminal what data is in each of the two parts produced by a split.
+This vignette demonstrates the methods of splitting data that are supported by the `splithalfr`. Each splitting method is illustrated by calling `by_split` with the right arguments, printing to the terminal what data is in each of the two parts produced by a split. For a comprehensive review of each splitting method, see [Pronk et al. (2021)](https://doi.org/10.3758/s13423-021-01948-3).
 
 
 # Example data

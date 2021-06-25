@@ -1,10 +1,10 @@
 Package: splithalfr
 Title: Estimate Split-Half Reliabilities
-Version: 2.1.0
-Date: 2021-03-11
+Version: 2.1.1
+Date: 2021-06-25
 Author: Thomas Pronk [aut, cre]
 Authors@R: person("Thomas", "Pronk", email = "pronkthomas@gmail.com", role = c("aut", "cre"))
-Description: Estimates split-half reliabilities for scoring algorithms of reaction time (RT) tasks and questionnaires. The 'splithalfr' supports researcher-provided scoring algorithms, with six vignettes illustrating how on included datasets. The package provides four splitting methods (first-second, odd-even, permutated, Monte Carlo), the option to stratify splits by task design, a number of reliability coefficients, and the option to sub-sample data.
+Description: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires. The 'splithalfr' supports researcher-provided scoring algorithms, with six vignettes illustrating how on included datasets. The package provides four splitting methods (first-second, odd-even, permutated, Monte Carlo), the option to stratify splits by task design, a number of reliability coefficients, and the option to sub-sample data.
 Depends: R (>= 3.6.0)
 License: GPL-3
 Encoding: UTF-8
@@ -15,7 +15,7 @@ Suggests:
     testthat (>= 2.1.0),
     MASS (>= 7.3.51)
 Imports:
-    dplyr (>= 0.8.1),
+    dplyr (>= 1.0.7),
     tibble (>= 2.1.1),
     psych (>= 1.8.12),
     bcaboot (>= 0.2.1),
@@ -23,3 +23,4 @@ Imports:
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 URL: https://github.com/tpronk/splithalfr
+BugReports: https://github.com/tpronk/splithalfr/issues

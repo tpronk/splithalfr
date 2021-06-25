@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(splithalfr)
 ```
 This vignette describes a sum score of answers on questions from the 23-item Rutgers Alcohol Problem Inventory (RAPI)
-([White & Labouvie, 1989](http://www.emcdda.europa.eu/html.cfm/index4200EN.html));
+([White & Labouvie, 1989](https://doi.org/10.15288/jsa.1989.50.30));
 
 <br />
 

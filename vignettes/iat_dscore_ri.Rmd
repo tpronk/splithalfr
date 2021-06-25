@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 library(splithalfr)
 library(dplyr)
 ```
-This vignette describes a scoring method introduced by [Greenwald, Nosek, and Banaji (2003)](https://doi.org/10.1037/0022-3514.85.2.197); the improved d-score for Implicit Association Task (IATs) that require a correct response in order to continue to the next trial. This version of the d-score algorithm adds up all response times of all responses per trial. As this algorithm also specifies which participants to keep and to drop, functions from the [dplyr package](https://dplyr.tidyverse.org/) will be used to produce relevant summary statistics. Note that this vignette is more advanced that the others included in the `splithalfr` package, so it is not recommended as a first introduction on to how to use the splithalfr.
+This vignette describes a scoring method introduced by [Greenwald, Nosek, and Banaji (2003)](https://pubmed.ncbi.nlm.nih.gov/1291656); the improved d-score for Implicit Association Task (IATs) that require a correct response in order to continue to the next trial. This version of the d-score algorithm adds up all response times of all responses per trial. As this algorithm also specifies which participants to keep and to drop, functions from the [dplyr package](https://dplyr.tidyverse.org/) will be used to produce relevant summary statistics. Note that this vignette is more advanced that the others included in the `splithalfr` package, so it is not recommended as a first introduction on to how to use the splithalfr.
 
 <br />
 

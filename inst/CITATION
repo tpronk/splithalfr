@@ -1,0 +1,16 @@
+citHeader("To cite the splithalfr, please use:")
+citEntry(
+  entry = "Article",
+  author = c(
+    person("Pronk", "Thomas"),
+    person("Molenaar", "Dylan"),
+    person("Wiers", "Reinout"),
+    person("Murre", "Jaap")
+  ),
+  title = "Methods to split cognitive task data for estimating split-half reliability: A comprehensive review and systematic assessment",
+  journal = "Psychonomic Bulletin & Review",
+  doi = "10.3758/s13423-021-01948-3",
+  pages = "1-11",
+  year = "2021",
+  textVersion  = "Pronk, T., Molenaar, D., Wiers, R. W., & Murre, J. (2021). Methods to split cognitive task data for estimating split-half reliability: A comprehensive review and systematic assessment. Psychonomic Bulletin & Review, 1-11. https://doi.org/10.3758/s13423-021-01948-3",
+)
