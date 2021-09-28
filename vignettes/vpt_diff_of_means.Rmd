@@ -98,7 +98,7 @@ data.frame(
 # Estimating split-half reliability
 
 ## Calculating split scores
-To calculate split-half scores for each participant, use the function `by_split`. The first three arguments of this function are the same as for `by`. An additional set of arguments allow you to specify how to split the data and how often. In this vignette we will calculate scores of 1000 bootstrapped splits. The trial properties `patt`, `thor` and `keep` were counterbalanced in the VPT design. We will stratify splits by these trial properties. See the vignette on splitting methods for more ways to split the data.
+To calculate split-half scores for each participant, use the function `by_split`. The first three arguments of this function are the same as for `by`. An additional set of arguments allow you to specify how to split the data and how often. In this vignette we will calculate scores of 1000 permutated splits. The trial properties `patt`, `thor` and `keep` were counterbalanced in the VPT design. We will stratify splits by these trial properties. See the vignette on splitting methods for more ways to split the data.
 
 The `by_split` function returns a data frame with the following columns:
 
@@ -119,7 +119,7 @@ split_scores <- by_split(
 ```
 
 ## Calculating reliability coefficients
-Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple `mean`. A bias-corrected and accelerated bootstrap confidence interval can be calculated via `split_ci`.
+Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple `mean`. A bias-corrected and accelerated bootstrap confidence interval can be calculated via `split_ci`. Note that estimating the confidence interval involves very intensive calculations, so it can take a long time to complete.
 
 ```
 # Spearman-Brown adjusted Pearson correlations per replication
@@ -129,5 +129,5 @@ hist(coefs)
 # Mean of coefficients
 mean(coefs)
 # Confidence interval of coefficients
-split_ci(split_scores, coefs)
+split_ci(split_scores, spearman_brown)
 ```
