@@ -313,24 +313,27 @@ split_stratum <- function (stratum, ...) {
 #' stratum = letters[1:9]
 #' indexes = get_split_indexes_from_stratum(stratum)
 #' apply_split_indexes_to_stratum(stratum, indexes[[1]], indexes[[2]])
-#' # First-second split, The middle element is randomly assigned to part 1 or 2
-#' split_stratum(1 : 9, method = "first_second")
-#' # Odd-even split
-#' split_stratum(1 : 9, method = "odd_even")
-#' # Random split. One of the splits gets randomly gets 4 elements; the other 5
-#' split_stratum(1 : 9)
-#' # Random split, using half of the stratum (4.5 elements, rounded up to 5)
-#' split_stratum(1 : 9, subsample_p = 0.5)
-#' # Random splits with same size as stratum by sampling with replacement
-#' split_stratum(1 : 9, split_p = 1, replace = TRUE)
-#' # Random splits, same size as stratum, using half of stratum
-#' split_stratum(1 : 9, subsample_p = 0.5, split_p = 1, replace = TRUE)
-#' # Random split with replacement; each part gets 5 elements (4.5 rounded up)
-#' split_stratum(1 : 9, replace = TRUE)
-#' # Random split on a data frame
-#' split_stratum(data.frame(x = 1 : 4, y = 5 : 8))
-#' # Random split on a list
-#' split_stratum(list(p = 1, q = 2, r = 3, s = 4))
+# # First-second split, The middle element is randomly assigned to part 1 or 2
+# split_stratum(1 : 9, method = "first_second")
+# # Odd-even split
+# split_stratum(1 : 9, method = "odd_even")
+# # Random split. One of the splits gets randomly gets 4 elements; the other 5
+# split_stratum(1 : 9)
+# # Random split, using half of the stratum (4.5 elements, rounded up to 5)
+# split_stratum(1 : 9, subsample_p = 0.5)
+# # Random splits with same size as stratum by sampling with replacement
+# split_stratum(1 : 9, split_p = 1, replace = TRUE)
+# # Random splits, same size as stratum, using half of stratum
+# split_stratum(1 : 9, subsample_p = 0.5, split_p = 1, replace = TRUE)
+# # Random split with replacement; each part gets 5 elements (4.5 rounded up)
+# split_stratum(1 : 9, replace = TRUE)
+# # Random split on a data frame
+# split_stratum(data.frame(x = 1 : 4, y = 5 : 8))
+# # Random split on a list
+# split_stratum(list(p = 1, q = 2, r = 3, s = 4))
+# # Random split where 1 gets 0.75 of the elements and 2 gets 0.25
+# split_stratum(1 : 8, replace = FALSE, split_p = 0.75)
+# split_stratum(1 : 9, replace = FALSE, split_p = 0.75)
 #' @export
 #' @family splitting functions
 get_split_indexes_from_stratum <- function (
@@ -346,29 +349,38 @@ get_split_indexes_from_stratum <- function (
     if (method[1] %in% c("first_second", "odd_even")) {
       if (subsample_p != 1) {
         stop (paste("method =", method[1], "in combination with subsample_p != 1",
-          "may give unexpected results. This error can be",
-          "disabled by setting careful = FALSE"
+          "may give unexpected results.",
+          "This error can be disabled by setting careful = FALSE"
         ))
       }
       if (split_p != 0.5) {
         stop (paste("method =", method[1], "in combination with split_p != 0.5",
-          "may give unexpected results. This error can be",
-          "disabled by setting careful = FALSE"
+          "may give unexpected results.",
+          "This error can be disabled by setting careful = FALSE"
         ))
       }
       if (replace) {
         stop (paste("method =", method[1], "in combination with replace =",
-          replace, "may give unexpected results. This error can be",
-          "disabled by setting careful = FALSE"
+          replace, "may give unexpected results.",
+          "This error can be disabled by setting careful = FALSE"
         ))
       }
     }
-    if (split_p > 0.5 && !replace) {
-      stop (paste("split_p =", split_p, "in combination with replace =",
-        replace, "is not supported; any split_p > 0.5 will automatically",
-        "be sampled with replacement by setting careful = FALSE"
+
+    if (split_p != 0.5 && split_p <= 1 && !replace) {
+      warning (paste("split_p =", split_p, "in combination with replace =",
+        replace, "may give unexpected results; any split_p != 0.5 and <= 1",
+        "will sample with split_p for score1, and (1 - split_p) for score2.",
+        "This error can be disabled by setting careful = FALSE"
       ))
-      
+    }
+    
+    if (split_p > 1 && !replace) {
+      stop (paste("split_p =", split_p, "in combination with replace =",
+        replace, "may give unexpected results; any split_p > 1 will automatically",
+        "be sampled with replacement.",
+        "This error can be disabled by setting careful = FALSE"
+      ))
     }
   }    
   
@@ -383,6 +395,7 @@ get_split_indexes_from_stratum <- function (
     stop ("subsample_p should be in range [0, 1]")
   }
   if (subsample_p < 1) {
+    # subsample_n is here the number of trials to sample
     subsample_n = ceiling(subsample_p * stratum_size)
     stratum_indexes = sample(1 : stratum_size, subsample_n)
     stratum_size = subsample_n
@@ -420,26 +433,34 @@ get_split_indexes_from_stratum <- function (
     # Random case
     # Size of current sample
     select_size = 2 * split_p * stratum_size
+    # DEBUG
+    # END DEBUG
     # Below we generate indexes_1 and indexes_2, which contain indexes of elements of stratum
     # that go to each split
-    if (split_p <= 0.5 && !replace) {
+    if (split_p <= 1 && !replace) {
+      # in split_p <= 1, score1 will based on a part with size split_p and score on a part
+      # with size (1 - split_p)
+      select_size1 = split_p * stratum_size
+      select_size2 = (1 - split_p) * stratum_size
       # Sample without replacement
       # splits contains a 1 for split 1, 2 for split 2, and 0 for elements that don't go to either
-      # If stratum_size is uneven, stratum 1 or stratum 2 randomly gets an additional element
-      splits <- sample(
-        rep(1:2, ceiling(select_size / 2))
-      )[1 : ceiling(select_size)]
-      # If there are remaining elements in stratum, add zeros and shuffle again
-      if (select_size < stratum_size) {
-        splits = c(splits, rep(0, stratum_size - select_size))
+      # If select_size is uneven, stratum 1 or stratum 2 randomly gets an additional element
+      splits <- sample(c(
+        rep(1, ceiling(select_size1)),
+        rep(2, ceiling(select_size2))
+      ))[1 : ceiling(stratum_size)]
+      # If there are remaining elements in stratum, add zeros for them and shuffle again
+      split_length = length(splits) 
+      if (split_length < stratum_size) {
+        splits = c(splits, rep(0, stratum_size - split_length))
         splits = sample(splits)
       }
       indexes_1 = which(splits == 1)
       indexes_2 = which(splits == 2)
     } else {
       # Sample with replacement
-      indexes_1 = sample(1 : stratum_size, ceiling(select_size / 2), replace = TRUE)
-      indexes_2 = sample(1 : stratum_size, ceiling(select_size / 2), replace = TRUE)
+      indexes_1 = sample(1 : stratum_size, ceiling(split_p * stratum_size), replace = TRUE)
+      indexes_2 = sample(1 : stratum_size, ceiling(split_p * stratum_size), replace = TRUE)
     }
   }
   return (list(stratum_indexes[indexes_1], stratum_indexes[indexes_2]))
