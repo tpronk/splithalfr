@@ -47,7 +47,7 @@
 #' \href{https://www.researchgate.net/profile/Craig-Hedge}{Craig Hedge} and 
 #' \href{https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams}{Benedict Williams}
 #' for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes. 
-#' Finally, I would like to thank \hreaf{https://www.researchgate.net/profile/Mae-Nuijs}{Mae Nuys} and Maren Sera for spotting bugs in earlier versions of this package.
+#' Finally, I would like to thank \href{https://www.researchgate.net/profile/Mae-Nuijs}{Mae Nuys} and Maren Sera for spotting bugs in earlier versions of this package.
 #' 
 #' @importFrom dplyr %>% group_by group_modify summarize bind_rows
 #' @importFrom stats cor sd var cov reshape
