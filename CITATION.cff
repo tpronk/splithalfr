@@ -1,5 +1,6 @@
 cff-version: 1.2.0
 type: article
+message: "If you use this software, please cite it using these metadata."
 title: "Methods to split cognitive task data for estimating split-half reliability: A comprehensive review and systematic assessment"
 year: 2021
 authors:
