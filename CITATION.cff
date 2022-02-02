@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: "splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires"
+message: "Please cite the software itself and the journal article from 'preferred-citation'."
+type: software
+date-released: "2021-09-29"
+version: "2.2.0"
+url: "https://github.com/tpronk/splithalfr"
+authors:
+  - given-names: Thomas
+    family-names: Pronk
+    orcid: "https://orcid.org/0000-0001-9334-7190"
+references:
+  - authors:
+      - family-names: Pronk
+        given-names: Thomas
+      - family-names: Molenaar
+        given-names: Dylan
+      - family-names: Wiers
+        given-names: "Reinout W."
+      - family-names: Murre
+        given-names: Jaap
+    doi: 10.3758/s13423-021-01948-3
+    journal: "Psychonomic Bulletin & Review"
+    title: "Methods to split cognitive task data for estimating split-half reliability: A comprehensive review and systematic assessment"
+    type: article
+    year: 2021
