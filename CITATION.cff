@@ -4,6 +4,7 @@ message: "Please cite the software itself and the journal article from 'preferre
 type: software
 url: "https://github.com/tpronk/splithalfr/"
 version: "2.2.0"
+date-released: "2021-09-29"
 authors:
   - given-names: Thomas
     family-names: Pronk
