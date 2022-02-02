@@ -3,6 +3,7 @@ title: "splithalfr: Estimates split-half reliabilities for scoring algorithms of
 message: "Please cite the software itself and the journal article from 'preferred-citation'."
 type: software
 url: "https://github.com/tpronk/splithalfr/"
+version: "2.2.0"
 authors:
   - given-names: Thomas
     family-names: Pronk
