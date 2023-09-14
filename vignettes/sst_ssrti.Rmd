@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 library(splithalfr)
 ```
 
-This vignette describes the Stop-Signal Reaction Time integration method (SSRTi); a scoring method introduced by [Logan (1981)](http://www.psy.vanderbilt.edu/faculty/logan/Logan(1981).pdf). The scoring function was adapted from an R-script that was graciously made available by [Craig Hedge](https://www.researchgate.net/profile/Craig-Hedge) and used in [Hedge, Powell, and Sumner (2018)](https://doi.org/10.1016/j.tate.2019.102887).
+This vignette describes the Stop-Signal Reaction Time integration method (SSRTi); a scoring method introduced by [Logan (1981)](http://www.psy.vanderbilt.edu/faculty/logan/Logan(1981).pdf). The scoring function was adapted from an R-script that was graciously made available by Craig Hedge and used in [Hedge, Powell, and Sumner (2018)](https://doi.org/10.1016/j.tate.2019.102887).
 
 <br />
 

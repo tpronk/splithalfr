@@ -8,9 +8,9 @@ Please cite the software and the compendium paper.
 
 Pronk, T., Molenaar, D., Wiers, R. W., & Murre, J. M. J. (2021). Methods to split cognitive task data for estimating split-half reliability: A comprehensive review and systematic assessment. *Psychonomic Bulletin & Review*. https://doi.org/10.3758/s13423-021-01948-3
 
-### Software citation (for version 2.0.0)
+### Software citation (for version 2.2.2)
 
-Pronk, T. (2021). *splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires* (Version 2.2.0) [Computer software]. https://github.com/tpronk/splithalfr/
+Pronk, T. (2023). *splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires* (Version 2.2.2) [Computer software]. https://doi.org/10.5281/zenodo.7777894
 
 ## Getting started
 We've got six short vignettes to help you get started. You can open a vignette bij running the corresponding code snippets `vignette(...)` in the R console.
@@ -36,4 +36,4 @@ Part of the splithalfr algorithm has been validated via a set of simulations tha
 These R packages offer bootstrapped split-half reliabilities for specific scoring algorithms and are available via CRAN at the time of this writing:  [multicon](https://cran.r-project.org/package=multicon), [psych](https://cran.r-project.org/package=psych), and [splithalf](https://cran.r-project.org/package=splithalf).
 
 ## Acknowledgments:
-I would like to thank [Craig Hedge](https://www.researchgate.net/profile/Craig-Hedge), [Eva Schmitz](https://www.researchgate.net/profile/Eva-Schmitz), [Fadie Hanna](https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html), [Helle Larsen](https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en), [Marilisa Boffo](https://www.researchgate.net/profile/Marilisa-Boffo), and [Marjolein Zee](https://www.researchgate.net/profile/Marjolein-Zee-2), for making datasets available for inclusion in the splithalfr. Additionally, I would like to thank [Craig Hedge](https://www.researchgate.net/profile/Craig-Hedge) and [Benedict Williams](https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams) for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes. Finally, I would like to thank [Mae Nuys](https://www.researchgate.net/profile/Mae-Nuijs) and [Sera-Maren Wiechert](https://www.linkedin.com/in/sera-maren-wiechert-b37625122/) for spotting bugs in earlier versions of this package.
+I would like to thank Craig Hedge, Eva Schmitz, Fadie Hanna, [Helle Larsen](https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en), Marilisa Boffo, and Marjolein Zee, for making datasets available for inclusion in the splithalfr. Additionally, I would like to thank Craig Hedge and [Benedict Williams](https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams) for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes. Finally, I would like to thank Mae Nuijs and Sera-Maren Wiechert for spotting bugs in earlier versions of this package.

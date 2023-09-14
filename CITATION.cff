@@ -2,9 +2,9 @@ cff-version: 1.2.0
 title: "splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires"
 message: "Please cite the software itself and the journal article from 'preferred-citation'."
 type: software
-url: "https://github.com/tpronk/splithalfr/"
-version: "2.2.0"
-date-released: "2021-09-29"
+doi: 10.5281/zenodo.7777894
+version: "2.2.2"
+date-released: "2023-09-14"
 authors:
   - given-names: Thomas
     family-names: Pronk

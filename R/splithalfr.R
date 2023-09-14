@@ -36,18 +36,18 @@
 #' 
 #' @section Acknowledgments:
 #' I would like to thank 
-#' \href{https://www.researchgate.net/profile/Craig-Hedge}{Craig Hedge},
-#' \href{https://www.researchgate.net/profile/Eva-Schmitz}{Eva Schmitz},
-#' \href{https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html}{Fadie Hanna},
+#' Craig Hedge,
+#' Eva Schmitz,
+#' Fadie Hanna,
 #' \href{https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en}{Helle Larsen},
-#' \href{https://www.researchgate.net/profile/Marilisa-Boffo}{Marilisa Boffo}, and
-#' \href{https://www.researchgate.net/profile/Marjolein-Zee-2}{Marjolein Zee}
+#' Marilisa Boffo, and
+#' Marjolein Zee
 #' for making datasets available for inclusion in the splithalfr.
 #' Additionally, I would like to thank 
-#' \href{https://www.researchgate.net/profile/Craig-Hedge}{Craig Hedge} and 
+#' Craig Hedge and 
 #' \href{https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams}{Benedict Williams}
 #' for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes. 
-#' Finally, I would like to thank \href{https://www.researchgate.net/profile/Mae-Nuijs}{Mae Nuys} and Maren Sera for spotting bugs in earlier versions of this package.
+#' Finally, I would like to thank Mae Nuijs and Sera-Maren Wiechert for spotting bugs in earlier versions of this package.
 #' 
 #' @importFrom dplyr %>% group_by group_modify summarize bind_rows
 #' @importFrom stats cor sd var cov reshape
@@ -59,4 +59,4 @@
 #' @importFrom rlang .data
 #' @docType package
 #' @name splithalfr
-NULL
+"_PACKAGE"

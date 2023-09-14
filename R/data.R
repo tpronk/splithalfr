@@ -6,7 +6,7 @@
 #' Upon an incorrect response, the current trial was repeated. The response to each trial was logged.
 #' This particular dataset is from a Ethnicity-Valence IAT, which was administered (and described in detail) in 
 #' \doi{10.1016/j.tate.2019.102887}{Abacioglu and colleagues (2019)}. 
-#' This dataset was graciously provided by \href{https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html}{Fadie Hanna} and \href{https://www.researchgate.net/profile/Marjolein-Zee-2}{Marjolein Zee}.
+#' This dataset was graciously provided by Fadie Hanna and Marjolein Zee.
 #' 
 #' Overview of columns:
 #' \itemize{
@@ -46,7 +46,7 @@
 #' were non-alcoholic beverages, selected from the Amsterdam Beverage Picture Set
 #' \doi{10.1111/acer.12853}{(Pronk, Deursen, Beraha, Larsen, & Wiers, 2015)}.
 #' The dataset contains one row per trial.
-#' This dataset was graciously provided by \href{https://www.researchgate.net/profile/Marilisa-Boffo}{Marilisa Boffo}.
+#' This dataset was graciously provided by Marilisa Boffo.
 #' 
 #' Overview of columns:
 #' \itemize{
@@ -75,7 +75,7 @@
 #' while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
 #' out, until it disappeared from the screen. The first response to a stimulus was logged. 
 #' The dataset contains one row per trial.
-#' This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva-Schmitz}{Eva Schmitz}.
+#' This dataset was graciously provided by Eva Schmitz.
 #' 
 #' Overview of columns:
 #' \itemize{
@@ -120,7 +120,7 @@
 #' The Go/No Go is a task in which participants respond to one set of stimuli, but withhold a response
 #' to another set of stimuli. This particular dataset is from the first session of a study that is 
 #' described in detail in \doi{10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
-#' It was graciously provided by \href{https://www.researchgate.net/profile/Craig-Hedge}{Craig Hedge} and can
+#' It was graciously provided by Craig Hedge and can
 #' be obtained from \href{https://osf.io/cwzds}{https://osf.io/cwzds}.
 #' 
 #' Overview of columns:
@@ -142,7 +142,7 @@
 #' On 25% of trials the participant heard a tone that indicated that the participant should withhold their response.
 #' This particular dataset is from the first session of a study that is 
 #' described in detail in \doi{10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
-#' It was graciously provided by \href{https://www.researchgate.net/profile/Craig-Hedge}{Craig Hedge} and can
+#' It was graciously provided by Craig Hedge and can
 #' be obtained from \href{https://osf.io/cwzds}{https://osf.io/cwzds}.
 #' 
 #' Overview of columns:
