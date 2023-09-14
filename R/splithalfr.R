@@ -59,4 +59,4 @@
 #' @importFrom rlang .data
 #' @docType package
 #' @name splithalfr
-NULL
+"_PACKAGE"
