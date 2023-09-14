@@ -8,9 +8,9 @@ Please cite the software and the compendium paper.
 
 Pronk, T., Molenaar, D., Wiers, R. W., & Murre, J. M. J. (2021). Methods to split cognitive task data for estimating split-half reliability: A comprehensive review and systematic assessment. *Psychonomic Bulletin & Review*. https://doi.org/10.3758/s13423-021-01948-3
 
-### Software citation (for version 2.0.0)
+### Software citation (for version 2.2.2)
 
-Pronk, T. (2021). *splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires* (Version 2.2.0) [Computer software]. https://github.com/tpronk/splithalfr/
+Pronk, T. (2023). *splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires* (Version 2.2.2) [Computer software]. https://doi.org/10.5281/zenodo.7777894
 
 ## Getting started
 We've got six short vignettes to help you get started. You can open a vignette bij running the corresponding code snippets `vignette(...)` in the R console.
