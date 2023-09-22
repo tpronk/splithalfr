@@ -175,7 +175,7 @@ by_split <- function (
           setTxtProgressBar(pb, i)
         }
         participant_id <- participant_ids[i]
-        tryCatch({check_strata(ds_base, data[[participant_id]])},
+        tryCatch({check_strata(ds_base, data[[i]])},
           error = function(e) {
            stop(paste(
              "For participant", participant_id, "the strata specified",
