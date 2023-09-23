@@ -208,6 +208,12 @@ by_split <- function (
     }
   } else {
     # Parallel lapply
+    if (ncores < 1) {
+      stop(paste0(
+        "The number of CPU cores specified via ncores (", ncores, ") ",
+        "should at least be 1." 
+      ))
+    }
     if (ncores > detectCores()) {
       stop(paste0(
         "The number of CPU cores specified via ncores (", ncores, ") ",
