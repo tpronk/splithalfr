@@ -201,11 +201,27 @@ by_split <- function (
   
   # Setup serial or parallel lapply
   if (ncores == 1) {
+    # Serial lapply
     fn_apply <- lapply
     if (verbose) {
       pb <- txtProgressBar(min = 0, max = replications, style = 3)    
     }
   } else {
+    # Parallel lapply
+    if (ncores < 1) {
+      stop(paste0(
+        "The number of CPU cores specified via ncores (", ncores, ") ",
+        "should at least be 1." 
+      ))
+    }
+    if (ncores > detectCores()) {
+      stop(paste0(
+        "The number of CPU cores specified via ncores (", ncores, ") ",
+        "was higher than the number available (", detectCores(), "). ",
+        "Leave ncores unspecified to have splithalfr::by_split use all available ",
+        "CPU cores or set ncores = 1 to run in serial mode."
+      ))
+    }
     cl <- makeCluster(ncores)
     clusterExport(cl, list(
       "bind_rows", "ncores",
