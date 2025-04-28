@@ -60,7 +60,7 @@
 #' @importFrom psych ICC
 #' @importFrom parallel detectCores makeCluster clusterExport clusterSetRNGStream stopCluster parLapply
 #' @importFrom utils txtProgressBar setTxtProgressBar
-#' @importFrom bcaboot bcajack
+#' @importFrom boot boot boot.ci
 #' @importFrom tibble is_tibble
 #' @importFrom rlang .data
 #' @docType package
