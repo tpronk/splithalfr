@@ -45,13 +45,13 @@
 #' Craig Hedge,
 #' Eva Schmitz,
 #' Fadie Hanna,
-#' \href{https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en}{Helle Larsen},
+#' Helle Larsen,
 #' Marilisa Boffo, and
 #' Marjolein Zee
 #' for making datasets available for inclusion in the splithalfr.
 #' Additionally, I would like to thank 
 #' Craig Hedge and 
-#' \href{https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams}{Benedict Williams}
+#' Benedict Williams
 #' for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes. 
 #' Finally, I would like to thank Mae Nuijs and Sera-Maren Wiechert for spotting bugs in earlier versions of this package.
 #' 
