@@ -174,6 +174,6 @@ split_ci <- function(ds, fn_coef, fn_average, bootstrap_replications = 1000, par
   }
   
   # Conduct and return bootstrap
-  boot_result = boot(data = ds_wide, statistic = func, R = bootstrap_replications, ...)
+  boot_result = boot(data = ds_wide, statistic = func, R = bootstrap_replications, parallel = parallel, ncpus = ncpus, ...)
   return (boot_result)  
 }
