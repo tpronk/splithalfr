@@ -115,7 +115,7 @@ not_missing_casewise <- function (ds) {
 #' }
 #' names(ds_splits) = c("score_1", "score_2", "replication", "participant")
 #' # Conduct bootstrap
-#' bootstrap_result <- split_ci(ds_splits, cor, mean)
+#' bootstrap_result <- split_ci(ds_splits, cor, mean, parallel = "no")
 #' # Get boosted and accelerated confidence intervals
 #' print(boot.ci(bootstrap_result, type="bca"))
 #' @section References:
