@@ -1,12 +1,12 @@
 # splithalfr: Split-Half Reliabilities
-Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires. The 'splithalfr' supports researcher-provided scoring algorithms, with six vignettes illustrating how on included datasets. The package provides four splitting methods (first-second, odd-even, permutated, Monte Carlo), the option to stratify splits by task design, a number of reliability coefficients, the option to sub-sample data, and bootstrapped confidence intervals.
-
 [![CRANVersion](https://www.r-pkg.org/badges/version/splithalfr)](https://cran.r-project.org/package=splithalfr)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Downloads](https://cranlogs.r-pkg.org/badges/splithalfr)](https://cran.r-project.org/package=splithalfr)
 [![License: LGPL v3](https://img.shields.io/badge/license-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7777894.svg)](https://doi.org/10.5281/zenodo.7777894)
+
+Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires. The 'splithalfr' supports researcher-provided scoring algorithms, with six vignettes illustrating how on included datasets. The package provides four splitting methods (first-second, odd-even, permutated, Monte Carlo), the option to stratify splits by task design, a number of reliability coefficients, the option to sub-sample data, and bootstrapped confidence intervals.
 
 # Installation
 * The latest release is on CRAN at https://cran.r-project.org/package=splithalfr. Install it by running `install.packages("splithalfr")`
