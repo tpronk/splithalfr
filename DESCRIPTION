@@ -23,4 +23,4 @@ Imports:
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 URL: https://github.com/tpronk/splithalfr
-BugReports: https://github.com/tpronk/splithalfr/discussions
+BugReports: https://github.com/tpronk/splithalfr/issues

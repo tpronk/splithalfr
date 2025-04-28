@@ -31,7 +31,7 @@ The splithalfr supports a variety of methods for splitting your data. We review 
 * Monte Carlo ([Williams & Kaufmann, 2012](https://doi.org/10.1016/j.jesp.2012.03.001))
 
 # Citing the splithalfr
-Please cite the compendium paper ([Pronk et al., 2022](https://doi.org/10.3758/s13423-021-01948-3)) and the software. To cite the software, see the [CITATION.cff](CITATION.cff) file, type `citation("splithalfr")` in R, or use the reference below.
+Please cite the compendium paper ([Pronk et al., 2022](https://doi.org/10.3758/s13423-021-01948-3)) and the software. To cite the software, see the [https://github.com/tpronk/splithalfr/blob/main/CITATION.cff](CITATION.cff) file, type `citation("splithalfr")` in R, or use the reference below.
 
 Pronk, T. (2025). *splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires* (Version 3.0.0) [Computer software]. https://doi.org/10.5281/zenodo.7777894
 
