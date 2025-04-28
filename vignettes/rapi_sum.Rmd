@@ -107,15 +107,25 @@ split_scores <- by_split(
 ```
 
 ## Calculating reliability coefficients
-Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple `mean`. A bias-corrected and accelerated bootstrap confidence interval can be calculated via `split_ci`. Note that estimating the confidence interval involves very intensive calculations, so it can take a long time to complete.
+Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged, for instance via a simple `mean`. 
 
 ```
-# Spearman-Brown adjusted Pearson correlations per replication
-coefs <- split_coefs(split_scores, spearman_brown)
+# Since we're matching items across participants, let's assume essential
+# tau-equivalence between splits and use the Flanagan-Rulon coefficient
+coefs <- split_coefs(split_scores, flanagan_rulon)
 # Distribution of coefficients
 hist(coefs)
 # Mean of coefficients
 mean(coefs)
-# Confidence interval of coefficients
-split_ci(split_scores, spearman_brown)
+```
+
+## Calculating bootstrapped confidence intervals for population reliability coefficient
+Finally, we can estimate the Calculate bootstrapped confidence intervals for the value of the reliability coefficient in the population by bootstrapping participants. Below, this is illustrated using a conventional bootstrap, reporting bias-corrected and accelerated (BCa) confidence intervals.
+
+```
+# Conduct a bootstrap (of participants)
+bootstrap_result <- split_ci(split_scores, flanagan_rulon, mean)
+# Report confidence intervals
+library(boot)
+print(boot.ci(bootstrap_result, type="bca"))
 ```
