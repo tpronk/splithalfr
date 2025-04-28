@@ -11,7 +11,7 @@ Estimates split-half reliabilities for scoring algorithms of cognitive tasks and
 # Installation
 * The latest release is on CRAN at https://cran.r-project.org/package=splithalfr. Install it by running `install.packages("splithalfr")`
 * Releases are also archived at Zenodo under the DOI [10.5281/zenodo.7777894](https://doi.org/10.5281/zenodo.7777894)
-* The latest development version is available via this repo at [https://github.com/tpronk/splithalfr](). Beware: this version may contain errors and can change at any time.
+* The latest development version is available via this repo at [https://github.com/tpronk/splithalfr](https://github.com/tpronk/splithalfr). Beware: this version may contain errors and can change at any time.
 
 # Getting started
 We've got six short vignettes to help you get started. You can open a vignette bij running the corresponding code snippet `vignette(...)` in the R console or see them online at [rdrr.io](https://rdrr.io/cran/splithalfr/#vignettes)
@@ -31,7 +31,7 @@ The splithalfr supports a variety of methods for splitting your data. We review 
 * Monte Carlo ([Williams & Kaufmann, 2012](https://doi.org/10.1016/j.jesp.2012.03.001))
 
 # Citing the splithalfr
-Please cite the compendium paper ([Pronk et al., 2022](https://doi.org/10.3758/s13423-021-01948-3)) and the software. To cite the software, see the [https://github.com/tpronk/splithalfr/blob/main/CITATION.cff](CITATION.cff) file, type `citation("splithalfr")` in R, or use the reference below.
+Please cite the compendium paper ([Pronk et al., 2022](https://doi.org/10.3758/s13423-021-01948-3)) and the software. To cite the software, see the [CITATION.cff](https://github.com/tpronk/splithalfr/blob/main/CITATION.cff) file, type `citation("splithalfr")` in R, or use the reference below.
 
 Pronk, T. (2025). *splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires* (Version 3.0.0) [Computer software]. https://doi.org/10.5281/zenodo.7777894
 
