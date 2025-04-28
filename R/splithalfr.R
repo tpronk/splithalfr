@@ -3,7 +3,7 @@
 #' Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires. 
 #' 
 #' @section Getting started:
-#' We've got six short vignettes to help you get started. You can open a vignette by running the corresponding code snippets (\code{vignette(...)}) in the R console.
+#' We've got six short vignettes to help you get started. You can open a vignette by running the corresponding code snippet (\code{vignette(...)}) in the R console.
 #' \itemize{
 #'   \item \code{vignette("rapi_sum")} Sum-score for data of the 23-item version of the Rutgers Alcohol Problem Index (White & Labouvie, 1989 <\doi{10.15288/jsa.1989.50.30}>)
 #'   \item \code{vignette("vpt_diff_of_means")} Difference of mean RTs for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data (Mogg & Bradley, 1999 <\doi{10.1080/026999399379050}>)

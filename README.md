@@ -14,7 +14,7 @@ Estimates split-half reliabilities for scoring algorithms of cognitive tasks and
 * The latest development version is available via this repo at [https://github.com/tpronk/splithalfr](). Beware: this version may contain errors and can change at any time.
 
 # Getting started
-We've got six short vignettes to help you get started. You can open a vignette bij running the corresponding code snippets `vignette(...)` in the R console.
+We've got six short vignettes to help you get started. You can open a vignette bij running the corresponding code snippet `vignette(...)` in the R console or see them online at [rdrr.io](https://rdrr.io/cran/splithalfr/#vignettes)
 
 * `vignette("rapi_sum")` Sum-score for data of the 23-item version of the Rutgers Alcohol Problem Index ([White & Labouvie, 1989](https://doi.org/10.15288/jsa.1989.50.30))
 * `vignette("vpt_diff_of_means")` Difference of mean RTs for correct responses, after removing RTs below 200 ms and above 520 ms, on Visual Probe Task data ([Mogg & Bradley, 1999](https://doi.org/10.1080/026999399379050))
