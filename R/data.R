@@ -2,10 +2,10 @@
 #'
 #' The JASMIN2 IAT closely followed the original IAT procedure
 #' (\href{https://pubmed.ncbi.nlm.nih.gov/9654756/}{Greenwald, McGhee, & Schwartz, 1998}),
-#' except that target and attribute trials did not alternate.  Upon a correct response, the next trial started.
+#' except that target and attribute trials did not alternate. Upon a correct response, the next trial started.
 #' Upon an incorrect response, the current trial was repeated. The response to each trial was logged.
 #' This particular dataset is from a Ethnicity-Valence IAT, which was administered (and described in detail) in 
-#' \doi{10.1016/j.tate.2019.102887}{Abacioglu and colleagues (2019)}. 
+#' Abacioglu et al. (2019) <\doi{10.1016/j.tate.2019.102887}>.
 #' This dataset was graciously provided by Fadie Hanna and Marjolein Zee.
 #' 
 #' Overview of columns:
@@ -44,7 +44,7 @@
 #' This particular VPT was part of the pre-measurement
 #' of a cognitive bias modification study. The "test" stimuli were alcoholic beverages and the "control" stimuli
 #' were non-alcoholic beverages, selected from the Amsterdam Beverage Picture Set
-#' \doi{10.1111/acer.12853}{(Pronk, Deursen, Beraha, Larsen, & Wiers, 2015)}.
+#' (Pronk et al., 2015) <\doi{10.1111/acer.12853}>.
 #' The dataset contains one row per trial.
 #' This dataset was graciously provided by Marilisa Boffo.
 #' 
@@ -69,7 +69,7 @@
 #'
 #' The JASMIN1 AAT was an irrelevant feature task, in which participants were instructed to
 #' approach/avoid left/right rotated stimuli. This particular AAT was administered (and described in detail) in 
-#' \doi{10.1111/add.14071}{Boffo et al., 2018}. Participants were presented stimuli from a "test"
+#' Boffo et al. (2018) <\doi{10.1111/add.14071}>. Participants were presented stimuli from a "test"
 #' category, which were gambling-related pictures, and from a "control" category, which were pictures unrelated
 #' to gambling. It registered approach responses by participants pressing (and holding) the arrow down key,
 #' while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
@@ -97,7 +97,7 @@
 #' Example 23-item Rutgers Alcohol Problem Inventory (RAPI) data
 #'
 #' The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
-#' problems within the last year (\doi{https://doi.org/10.15288/jsa.1989.50.30}{White & Labouvie, 1989}).
+#' problems within the last year (White & Labouvie, 1989 <\doi{10.15288/jsa.1989.50.30}>).
 #' The dataset contains one row per participant.
 #' 
 #' The dataset contains the following columns:
@@ -119,7 +119,7 @@
 #'
 #' The Go/No Go is a task in which participants respond to one set of stimuli, but withhold a response
 #' to another set of stimuli. This particular dataset is from the first session of a study that is 
-#' described in detail in \doi{10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
+#' described in detail in Hedge et al. (2018) <\doi{10.1016/j.tate.2019.102887}>. 
 #' It was graciously provided by Craig Hedge and can
 #' be obtained from \href{https://osf.io/cwzds}{https://osf.io/cwzds}.
 #' 
@@ -141,7 +141,7 @@
 #' The Stop Signal Task is a task in which participants responded whether a stimulus was a square or a circle.
 #' On 25% of trials the participant heard a tone that indicated that the participant should withhold their response.
 #' This particular dataset is from the first session of a study that is 
-#' described in detail in \doi{10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
+#' described in detail in Hedge et al. (2018) <\doi{10.1016/j.tate.2019.102887}>.
 #' It was graciously provided by Craig Hedge and can
 #' be obtained from \href{https://osf.io/cwzds}{https://osf.io/cwzds}.
 #' 

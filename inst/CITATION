@@ -18,8 +18,8 @@ c(
     author = c(
       person("Thomas", "Pronk")
     ),
-    title = "splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires (Version 2.2.2) [Computer software]",
+    title = "splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires (Version 3.0.0) [Computer software]",
     doi = "10.5281/zenodo.7777894",
-    year = "2021"
+    year = "2025"
   )
 )

@@ -111,8 +111,7 @@ split_scores <- by_split(
 ```
 
 ## Calculating reliability coefficients
-Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple `mean`. A bias-corrected and accelerated bootstrap confidence interval can be calculated via `split_ci`. Note that estimating the confidence interval involves very intensive calculations, so it can take a long time to complete.
-
+Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged, for instance via a simple `mean`.
 ```
 # Spearman-Brown adjusted Pearson correlations per replication
 coefs <- split_coefs(split_scores, spearman_brown)
@@ -120,6 +119,17 @@ coefs <- split_coefs(split_scores, spearman_brown)
 hist(coefs)
 # Mean of coefficients
 mean(coefs)
-# Confidence interval of coefficients
-split_ci(split_scores, spearman_brown)
+```
+
+## Calculating bootstrapped confidence intervals for population reliability coefficient
+Finally, we can estimate the Calculate bootstrapped confidence intervals for the value of the reliability coefficient in the population by bootstrapping participants. For this, we'll need to repeatedly sample participants from the population, calculate a collection of reliability coefficients between the split scores of that sample of participants, and average those coefficients together. Hence, the call to `split_ci` below, takes (1) the split scores produced by calling `by_split` (`split_scores`), (2) the reliability coefficient we used above (`spearman_brown`), and (3) the method for averaging coefficients we used above (`mean`).
+
+*The bootstrap can take even longer than the split, and doesn't show any progress bar, but it also uses all available CPU cores by default.*
+
+```
+# Conduct a bootstrap (of participants)
+bootstrap_result <- split_ci(split_scores, spearman_brown, mean)
+# Report confidence intervals
+library(boot)
+print(boot.ci(bootstrap_result, type="bca"))
 ```
