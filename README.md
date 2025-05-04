@@ -41,7 +41,7 @@ Part of the splithalfr algorithm has been validated via a set of simulations tha
 # Related packages
 These R packages offer resampling-based split-half reliabilities for specific scoring algorithms and are available via CRAN at the time of this writing: [multicon](https://cran.r-project.org/package=multicon), [psych](https://cran.r-project.org/package=psych), [splithalf](https://cran.r-project.org/package=splithalf), and [rapidsplithalf](https://cran.r-project.org/package=rapidsplithalf). If I missed one, please reach out!
 
-# Acknowledgments:
+# Acknowledgments
 I would like to thank Craig Hedge, Eva Schmitz, Fadie Hanna, Helle Larsen, Marilisa Boffo, and Marjolein Zee, for making datasets available for inclusion in the splithalfr. Additionally, I would like to thank Craig Hedge and Benedict Williams for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes. Finally, I would like to thank Mae Nuijs and Sera-Maren Wiechert for spotting bugs in earlier versions of this package.
 
 # Developer guide
