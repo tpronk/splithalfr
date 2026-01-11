@@ -3,5 +3,6 @@
 ^splithalver\.Rproj$
 ^\.Rproj\.user$
 ^splithalfr.Rproj$
+codemeta.json
 LICENSE
 CITATION.cff
