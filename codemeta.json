@@ -1,0 +1,70 @@
+{
+    "@context": "https://w3id.org/codemeta/3.0",
+    "@type": "SoftwareSourceCode",
+    "applicationCategory": "Psychometrics",
+    "author": [
+        {
+            "id": "https://orcid.org/0000-0001-9334-7190",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Amsterdam UMC"
+            },
+            "email": "pronkthomas@gmail.com",
+            "familyName": "Pronk",
+            "givenName": "Thomas"
+        }
+    ],
+    "maintainer": [
+        {
+            "id": "https://orcid.org/0000-0001-9334-7190",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Amsterdam UMC"
+            },
+            "email": "pronkthomas@gmail.com",
+            "familyName": "Pronk",
+            "givenName": "Thomas"
+        }
+    ],
+    "codeRepository": "https://github.com/tpronk/splithalfr",
+    "dateCreated": "2019-05-23",
+    "dateModified": "2025-04-29",
+    "datePublished": "2019-06-07",
+    "description": "Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires.",
+    "downloadUrl": "https://cran.r-project.org/package=splithalfr",
+    "identifier": "https://doi.org/10.5281/zenodo.7777894",
+    "keywords": [
+        "R",
+        "reliability",
+        "split-half",
+        "psychometrics",
+        "cognitive tasks"
+    ],
+    "license": "https://spdx.org/licenses/LGPL-3.0",
+    "name": "splithalfr",
+    "operatingSystem": [
+        "Linux",
+        "Windows",
+        "macOS"
+    ],
+    "programmingLanguage": "R",
+    "readme": "https://raw.githubusercontent.com/tpronk/splithalfr/main/README.md",
+    "releaseNotes": "# Changelog\n\n## Major code Changes\n- For bootstrapping confidence intervals, [bcaboot](https://cran.r-project.org/package=bcaboot) was replaced by the [boot](https://cran.r-project.org/package=boot) package. Bootstrapping is still slow, but boot performs substantially faster single-core and supports parallel processing.\n- The function `split_ci` does not have a default value for `fn_coef` anymore and now returns an object of class `boot`\n\n## Documentation\n- Updated bootstrap-related reference documentation and vignettes\n- Updated the RAPI vignette to use the Flanagan-Rulon coefficient\n- Added new split-half reliability research and updated splitting methods recommendations accordingly\n- Made various small documentation improvements.",
+    "runtimePlatform": "R",
+    "softwareRequirements": [
+        "https://cran.r-project.org/package=dplyr",
+        "https://cran.r-project.org/package=tibble",
+        "https://cran.r-project.org/package=psych",
+        "https://cran.r-project.org/package=boot",
+        "https://cran.r-project.org/package=rlang"
+    ],
+    "softwareVersion": "3.0.0",
+    "version": "3.0.0",
+    "developmentStatus": "active",
+    "issueTracker": "https://github.com/tpronk/splithalfr/issues",
+    "relatedUrl": "https://doi.org/10.3758/s13423-021-01948-3",
+    "referencePublication": "https://doi.org/10.3758/s13423-021-01948-3",
+    "url": "https://cran.r-project.org/package=splithalfr"
+}
